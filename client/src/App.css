@@ -1,0 +1,351 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+#root{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+.main-container,
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+header{
+    width: 100%;
+    background-color: #fff;
+    z-index: 10;
+    top: 0;
+    border-bottom: #a3a3a871 solid 1px;
+}
+
+nav{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    z-index: 10;
+}
+
+.airbnb-logo{
+    padding: 1.5rem 1rem;
+    width: 100%;
+    min-width: 100px;
+    max-width: 125px;
+}
+
+.globe-container{
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.globe-text{
+    cursor: pointer;
+    padding: .7rem;
+    border-radius: 2rem;
+    transition: all .15s ease-in-out;
+}
+
+.globe-logo{
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    border-radius: 1rem;
+    transition: all .15s ease-in-out;
+}
+
+.menu-wrapper-outer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    cursor: pointer;
+    border: 1px solid #a3a3a865;
+    padding: .3rem .4rem;
+    margin-right: 1.5rem;
+    gap: .8rem;
+    transition: all .15s ease-in-out;
+}
+
+.menu-wrapper-outer:hover,
+.globe-logo:hover,
+.globe-text:hover{
+    box-shadow: 0 0 4px 0 rgb(151, 151, 151);
+}
+
+.menu-wrapper-inner{
+    height: 10px;
+    width: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: .5rem;
+}
+
+.menu-item{
+    background-color: #A3A3A8;
+    width: 100%;
+    height: 2px;
+}
+
+.user-logo{
+    width: 28px;
+    filter: grayscale(1);
+}
+
+main{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 1rem;
+}
+
+.section-image{
+    width: 70%; 
+}
+
+.section-title{
+    font-weight: bold;
+    font-size: 4vw;
+}
+
+.section-title,
+.section-info{
+    display: flex;
+    align-self: flex-start;
+    margin-left: 5rem;
+}
+  
+.section-info{
+    font-size: 2vw;
+    margin-top: 1rem;
+}
+
+.dropdown-wrapper{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .4s ease-in-out;
+    z-index: 999;
+}
+
+.dropdown-wrapper.show{
+    max-height: 383px;
+}
+
+.dropdown-item:nth-child(1){
+    font-weight: bold;
+    background-color: #FF5A5F ;
+}
+
+.dropdown-item:nth-child(1) a{
+    color: black;
+    text-decoration: none;
+}
+
+.dropdown-item:nth-child(3){
+    border-bottom: #A3A3A8 solid 1px;
+}
+
+.dropdown-item:nth-child(1):hover{
+    color: black;
+    background-color: rgba(255, 90, 95, 0.8);
+}
+
+.dropdown-item{
+    cursor: pointer;
+    padding: 1rem 2rem;
+}
+
+.dropdown-item:hover{
+    background-color: hsl(0, 0%, 95%);
+}
+
+footer{
+    position: fixed;
+    width: 100%;
+    display: flex;
+    background-color: #fff;
+    border-top: #E1E1E8 solid 1px;
+    padding: 1.2rem;
+    bottom: 0;
+}
+
+.footer-wrapper{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.footer-left-menu{
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-right-wrapper{
+    display: flex;
+    font-weight: bold;
+    gap: 2rem;
+}
+
+.footer-left-menu,
+.footer-right-wrapper{
+    flex-flow: row wrap;
+}
+
+.footer-item,
+.footer-right-items{
+    cursor: pointer;
+    text-decoration-color: transparent;
+    transition: all .25s ease-in-out;
+}
+
+.footer-item:hover,
+.footer-right-items:hover{
+    text-decoration-color: black;
+    text-decoration: underline;
+}
+
+.hidden-box{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 82px;
+}
+
+.hidden-box-bottom{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 59px;
+    bottom: 0;
+}
+
+.airbnb-container{
+    margin-top: 2rem;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 4rem 1rem;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hidden-amenities-box{
+    position: relative;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.amenities-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 1rem;
+    padding-top: 2rem;
+    background-color: #fff;
+    z-index: 9;
+    overflow-x: scroll;
+}
+
+.amenity-icon{
+    width: 35px;
+    opacity: .5;
+}
+
+.amenities-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.amenity-name{
+    font-size: .7rem;
+    font-weight: bold;
+}
+
+.new-updates{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #e8e8ee;
+    z-index: 12;
+}
+
+.new-updates span{
+    text-decoration: underline;
+    margin-left: .4rem;
+}
+
+.search-button{
+    width: 30px;
+    transform: scale(.7);
+}
+
+.search-wrapper{
+    display: flex;
+    width: 30px;
+    height: 30px;
+    background-color: #FF5A5F;
+    border-radius: 100%;
+}
+
+.cart-image{
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.cart-item-wrapper{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgb(201, 199, 199);
+    margin-bottom: 1rem;
+}
+
+.loading-screen{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    width: calc(100% - 1vw);
+    height: 100vh;
+    animation-name: fade;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fade {
+    from{opacity: 1; z-index: 20;}
+    to{opacity: 0; display: none; z-index: 0; height: 0;}
+}

@@ -1,0 +1,60 @@
+a{
+    color: black;
+    text-decoration: none;
+}
+
+.card-container{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    width: 325px;
+    height: 250px;
+    align-self: center;
+    justify-self: center;
+}
+
+.card-image{
+    width: 100%;
+    height: 225px;
+    object-fit: cover;
+    border-radius: .75rem;
+    box-shadow: 0 0 2px 0 black;
+}
+
+.star-image{
+    width: 1rem;
+    filter: grayscale(1);
+}
+
+.rating-container{
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.card-location{
+    font-weight: bold;
+}
+
+.total-ratings{
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+}
+
+.card-title{
+    opacity: .9;
+    margin-bottom: .5rem;
+}
+
+.airbnb-logo2{
+    width: 20vw;
+}
+
+
+
+
+
+
