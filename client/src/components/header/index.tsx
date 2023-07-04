@@ -1,5 +1,3 @@
-import { NavLink } from "react-router-dom";
-
 interface Props {}
 
 const Header: React.FC<Props> = () => {
