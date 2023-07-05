@@ -1,0 +1,33 @@
+:root {
+    --primary: #FF5A5F;
+    --secondary: #00A699;
+    --tertiary: #FC642D;
+    --quaternary: #484848;
+    --quinary: #767676;
+    --primary-hover: #f83037;
+    --grey: #dddddd;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+}
+
+html,
+#root,
+body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+a {
+    color: inherit;
+    text-decoration: none
+}

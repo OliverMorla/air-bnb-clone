@@ -1,14 +1,32 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import Root from "./routes/root";
+import Error from "./routes/error";
 import Home from "./pages/home";
+import Explore from "./pages/explore";
 
-import Header from "./components/header";
-import Footer from "./components/footer";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: '/explore',
+        element: <Explore />
+      }
+    ],
+  },
+]);
 
-const App: React.FC = () => {
+const App: React.FunctionComponent = () => {
   return (
     <>
-      <Header />
-      <Home />
-      <Footer />
+      <RouterProvider router={router} />
     </>
   );
 };

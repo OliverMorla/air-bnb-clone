@@ -1,0 +1,29 @@
+.dropdown-wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    right: 0;
+    top: 80%;
+    box-shadow: 0 0 4px var(--quinary);
+    border-radius: 10px;
+    background-color: white;
+    z-index: 2;
+    margin: 0 80px;
+
+    span {
+        cursor: pointer;
+        padding: 15px 80px 15px 10px;
+
+        &:hover {
+            background-color: var(--grey);
+        }
+
+        &:nth-child(1) {
+            font-weight: bolder;
+        }
+
+        &:nth-child(3) {
+            border-top: 1px solid var(--grey);
+        }
+    }
+}
