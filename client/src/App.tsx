@@ -5,8 +5,6 @@ import Error from "./routes/error";
 import Home from "./pages/home";
 import Explore from "./pages/explore";
 
-
-
 const router = createBrowserRouter([
   {
     path: "/",
