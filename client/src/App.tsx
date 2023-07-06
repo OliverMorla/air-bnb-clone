@@ -1,9 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Root from "./routes/root";
+import Root, {Loader as listingLoader} from "./routes/root";
 import Error from "./routes/error";
 import Home from "./pages/home";
 import Explore from "./pages/explore";
+
+
 
 const router = createBrowserRouter([
   {
@@ -16,9 +18,10 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/explore',
-        element: <Explore />
-      }
+        path: "/explore",
+        element: <Explore />,
+        loader: listingLoader,
+      },
     ],
   },
 ]);

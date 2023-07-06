@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faBars, faGlobe } from "@fortawesome/free-solid-svg-icons";
@@ -14,11 +15,13 @@ const Header: React.FunctionComponent<Props> = () => {
     <header>
       <nav>
         <figure>
-          <img
-            src="/assets/logos/airbnb-logo.png"
-            alt="airbnb-logo"
-            className="airbnb-logo"
-          />
+          <Link to={"/"}>
+            <img
+              src="/assets/logos/airbnb-logo.png"
+              alt="airbnb-logo"
+              className="airbnb-logo"
+            />
+          </Link>
         </figure>
         <section className="right-section">
           <div className="options-wrapper">
