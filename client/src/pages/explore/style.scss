@@ -1,9 +1,13 @@
 .explore-wrapper {
     flex-grow: 1;
 
-    .categories-wrapper{
-        display: flex;
-        justify-content: center;
-        
+    .categories-wrapper {
+        overflow-x: scroll;
+        margin: 0 80px;
+
+        .categories-scroll {
+            display: flex;
+            gap: 15px;
+        }
     }
 }
