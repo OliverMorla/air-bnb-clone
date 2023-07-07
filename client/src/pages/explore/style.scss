@@ -1,3 +1,9 @@
 .explore-wrapper {
     flex-grow: 1;
+
+    .categories-wrapper{
+        display: flex;
+        justify-content: center;
+        
+    }
 }

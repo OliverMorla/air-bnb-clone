@@ -1,15 +1,13 @@
-import { useLoaderData } from "react-router-dom";
 import Categories from "./categories";
 import "./style.scss";
 
 const Explore = () => {
-  const listings = useLoaderData()
   return (
     <main className="explore-wrapper">
-      <section>
+      <section className="categories-wrapper">
         <Categories />
       </section>
-      <h1> Explore page </h1>
+      <div className="listing-wrapper"></div>
     </main>
   );
 };
