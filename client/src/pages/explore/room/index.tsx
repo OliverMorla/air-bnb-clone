@@ -48,7 +48,7 @@ interface RecordsProps {
 const Room = () => {
   const { id } = useParams();
   const records = useLoaderData() as RecordsProps[];
-  const record = records.find((record) => record.recordid === id);
+  const record = records?.find((record) => record.recordid === id);
 
   return (
     <main className="record-wrapper">
