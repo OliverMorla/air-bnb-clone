@@ -1,4 +1,3 @@
-import { useState, useRef } from "react";
 import { useLoaderData, useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
@@ -8,6 +7,7 @@ import "./style.scss";
 interface RecordsProps {
   recordid: string;
   fields: {
+    // general
     name: string;
     host_neighbourhood: string;
     city: string;
@@ -43,11 +43,6 @@ const Room = () => {
   const { id } = useParams();
   const records = useLoaderData() as RecordsProps[];
   const record = records.find((record) => record.recordid === id);
-  console.log(record);
-  const [show, setShow] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   return (
     <main className="record-wrapper">
