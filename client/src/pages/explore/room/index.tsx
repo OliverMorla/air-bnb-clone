@@ -49,9 +49,6 @@ const Room = () => {
   const { id } = useParams();
   const records = useLoaderData() as RecordsProps[];
   const record = records.find((record) => record.recordid === id);
-  window.scrollTo(0, 0);
-
-  console.log(record);
 
   return (
     <main className="record-wrapper">
@@ -94,7 +91,7 @@ const Room = () => {
             </div>
             <div className="reviews-per-month">
               <FontAwesomeIcon icon={faStar} className="content-icon" />
-              {record?.fields.reviews_per_month} ·{" "}
+              {record?.fields.reviews_per_month} ·
               {record?.fields.number_of_reviews} reviews
             </div>
           </div>

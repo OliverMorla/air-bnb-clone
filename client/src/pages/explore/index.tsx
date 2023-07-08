@@ -23,6 +23,7 @@ interface RecordsProps {
 const Explore = () => {
   window.scrollTo(0, 0);
   const records = useLoaderData() as RecordsProps[];
+  
   return (
     <main className="explore-wrapper">
       <section className="categories-wrapper">
