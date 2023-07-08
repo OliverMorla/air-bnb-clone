@@ -1,6 +1,10 @@
 import { useLoaderData, useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-regular-svg-icons";
+import {
+  faStar,
+  faHeart,
+  faShareSquare,
+} from "@fortawesome/free-regular-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import "./style.scss";
 
@@ -22,6 +26,8 @@ interface RecordsProps {
     reviews_per_month: number;
     smart_location: string;
     host_name: string;
+    host_picture_url: string;
+    host_thumbnail_url: string;
 
     // fees
     price: number;
@@ -43,6 +49,9 @@ const Room = () => {
   const { id } = useParams();
   const records = useLoaderData() as RecordsProps[];
   const record = records.find((record) => record.recordid === id);
+  window.scrollTo(0, 0);
+
+  console.log(record);
 
   return (
     <main className="record-wrapper">
@@ -54,14 +63,18 @@ const Room = () => {
             {record?.fields.reviews_per_month} ·
           </div>
           <div className="number-of-reviews">
-            {record?.fields.number_of_reviews} reviews{" "}
+            {record?.fields.number_of_reviews} reviews
           </div>
           <div className="host-features">· {record?.fields.features} ·</div>
           <div className="location">{record?.fields.smart_location}</div>
         </div>
         <div className="btn-wrapper">
-          <div className="share-btn">Share</div>
-          <div className="save-btn">Save</div>
+          <div className="share-btn">
+            <FontAwesomeIcon icon={faShareSquare} /> Share
+          </div>
+          <div className="save-btn">
+            <FontAwesomeIcon icon={faHeart} /> Save
+          </div>
           <div className="cart-icon-wrapper">
             <FontAwesomeIcon icon={faShoppingCart} className="cart-icon" />
           </div>
@@ -75,10 +88,27 @@ const Room = () => {
         />
 
         <div className="reserve-card">
+          <div className="price-content-w">
+            <div className="house-price">
+              ${record?.fields.price} <span> night </span>
+            </div>
+            <div className="reviews-per-month">
+              <FontAwesomeIcon icon={faStar} className="content-icon" />
+              {record?.fields.reviews_per_month} ·{" "}
+              {record?.fields.number_of_reviews} reviews
+            </div>
+          </div>
+          <div className="appointment-w">
+            <label htmlFor="">
+              <span> Check-in </span>
+              <input type="date" name="" id="" />
+            </label>
+            <label htmlFor="">
+              <span> Check-Out </span>
+              <input type="date" name="" id="" />
+            </label>
+          </div>
           <div className="reserve-btn-wrapper">
-            <Link to={""}>
-              <div className="reserve-btn">Reserve</div>
-            </Link>
             <div className="number-of-guest">
               <label>Choose number of guest:</label>
               <select name="guest" id="guest-select">
@@ -91,37 +121,16 @@ const Room = () => {
                 <option value="6">6</option>
               </select>
             </div>
-            <div className="number-of-nights">
-              <label>Choose number of nights:</label>
-              <select name="nights" id="nights-select">
-                <option value="">--Please choose an option--</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-              </select>
-            </div>
+            <Link to={""}>
+              <div className="reserve-btn">Reserve</div>
+            </Link>
           </div>
+          <p> you wont be charged yet </p>
           <div className="price-main-wrapper">
-            <div className="house-price">
-              ${record?.fields.price} <span>night</span>
-            </div>
-            <img src="/star.png" alt="" className="content-star" />
-            <div className="price-wrapper">
-              <div className="reviews-per-month">
-                {record?.fields.reviews_per_month} ·
-              </div>
-              <div className="number-of-reviews">
-                {record?.fields.number_of_reviews} Reviews
-              </div>
+            <div className="info-price">
+              ${record?.fields.price} night x 13 nights <span> $553 </span>
             </div>
             <div className="fees-wrapper">
-              <div className="house-price">
-                ${record?.fields.price} <span>night</span> x{" "}
-                <span className="number-of-nights-num">5</span>
-              </div>
               <div className="content-fee">
                 Cleaning fee <span>$11</span>
               </div>
@@ -135,8 +144,14 @@ const Room = () => {
           </div>
         </div>
       </div>
-      <div className="house-title">{record?.fields.room_type} by {record?.fields.host_name}</div>
-      <div className="room-record?.fields">
+      <div className="house-title">
+        {record?.fields.room_type} by {record?.fields.host_name}{" "}
+        <span>
+          {" "}
+          <img src={record?.fields.host_thumbnail_url} alt="" />
+        </span>
+      </div>
+      <div className="room-info">
         <div className="stats">{record?.fields.guests_included} guests •</div>
         <div className="stats">{record?.fields.bedrooms} bedroom •</div>
         <div className="stats">{record?.fields.beds} beds •</div>

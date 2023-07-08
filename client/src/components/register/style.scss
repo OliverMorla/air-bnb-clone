@@ -1,0 +1,100 @@
+.register-dialog {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 560px;
+    height: fit-content;
+    box-shadow: 0 0 4px var(--grey);
+    padding: 24px;
+    gap: 10px;
+    // transform: translate(50%, 50%);
+
+    background-color: white;
+    z-index: 4;
+
+    .register-header {
+        display: flex;
+        justify-content: center;
+        height: 50px;
+
+        .x-mark {
+            position: absolute;
+            left: 0;
+            padding-left: 24px;
+            cursor: pointer;
+        }
+
+        p {
+            text-align: center;
+            font-weight: bolder;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        input {
+            font-size: 16px;
+            padding: 10px 15px;
+            height: 50px;
+        }
+
+        label{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p {
+            font-size: 12px;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            appearance: none;
+            color: white;
+            padding: 15px 15px;
+            font-weight: bolder;
+            background-color: var(--primary);
+        }
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+        font-size: 10px;
+
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 48%;
+            height: 2px;
+            background-color: grey;
+        }
+
+        &::after {
+            content: "";
+            display: inline-block;
+            width: 250px;
+            height: 2px;
+            background-color: grey;
+        }
+    }
+
+    button {
+        cursor: pointer;
+        border: 1px solid var(--primary);
+        appearance: none;
+        color: black;
+        padding: 15px 15px;
+        font-weight: bolder;
+        background-color: transparent;
+    }
+
+    .login-link {
+        text-align: center;
+    }
+}
