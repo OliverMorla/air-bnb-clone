@@ -7,13 +7,6 @@ import "./style.scss";
 
 interface RecordsProps {
   recordid: string;
-<<<<<<< HEAD
-  price: number;
-  name: string;
-  host_neighbourhood: string;
-  city: string;
-  xl_picture_url: string;
-=======
   fields: {
     price: number;
     name: string;
@@ -25,17 +18,12 @@ interface RecordsProps {
     room_type: string;
     minimum_nights: number;
   };
->>>>>>> 5dc336faafb76524b5d8b9e410e83b17e12f6c92
 }
 
 const Explore = () => {
   window.scrollTo(0, 0);
   const records = useLoaderData() as RecordsProps[];
-<<<<<<< HEAD
-  records.map((records) => console.log(records.recordid));
-=======
   
->>>>>>> 5dc336faafb76524b5d8b9e410e83b17e12f6c92
   return (
     <main className="explore-wrapper">
       <section className="categories-wrapper">
