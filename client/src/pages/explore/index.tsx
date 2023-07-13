@@ -6,9 +6,9 @@ interface RecordsProps {
   recordid: string;
   price: number;
   name: string;
-  host_neighbourhood: string,
-  city: string,
-  xl_picture_url: string,
+  host_neighbourhood: string;
+  city: string;
+  xl_picture_url: string;
 }
 // const getRecords = (records: any) => {
 //   return records
@@ -17,7 +17,7 @@ interface RecordsProps {
 const Explore = () => {
   // const records = getRecords(useLoaderData())
   const records = useLoaderData() as RecordsProps[];
-  records.map((records) => (console.log(records.recordid)))
+  records.map((records) => console.log(records.recordid));
   return (
     <main className="explore-wrapper">
       <section className="categories-wrapper">
@@ -34,7 +34,6 @@ const Explore = () => {
               <p className="nights">{}</p>
               <p className="price">{record.price}</p>
             </div>
-            
           </div>
         ))}
       </div>

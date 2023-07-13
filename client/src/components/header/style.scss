@@ -19,6 +19,16 @@ header {
             }
         }
 
+        .search-wrapper{
+            .search-icon{
+                cursor: pointer;
+                background-color: var(--primary);
+                padding: 10px;
+                border-radius: 100%;
+                color: white;
+            }
+        }
+
         .right-section {
             display: flex;
             gap: 10px;
