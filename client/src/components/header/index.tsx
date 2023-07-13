@@ -5,6 +5,8 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faBars, faGlobe, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "./dropdown";
 import "./style.scss";
+// import Login from "../login";
+// import Register from "../register";
 
 interface Props {}
 
@@ -38,6 +40,10 @@ const Header: React.FunctionComponent<Props> = () => {
         </section>
         {open && <Dropdown />}
       </nav>
+      {/* <div className="login-wrapper">
+        <Login />
+        <Register />
+      </div> */}
     </header>
   );
 };

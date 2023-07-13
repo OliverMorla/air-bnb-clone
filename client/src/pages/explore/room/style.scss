@@ -1,0 +1,204 @@
+.record-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 20px 300px;
+
+    .house-title {
+        font-size: 2rem;
+        font-weight: bold;
+        display: flex;
+        gap: 60px;
+    }
+
+    .house-title-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .title-content-left,
+        .btn-wrapper {
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+        }
+
+        .btn-wrapper {
+            margin-right: 1rem;
+
+            .share-btn,
+            .save-btn {
+                background-color: #28282B;
+                padding: .4rem;
+                color: #fff;
+                border-radius: .4rem;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .reviews-per-month {
+        font-weight: bold;
+        display: flex;
+    }
+
+    .number-of-reviews,
+    .location {
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    .room-info {
+        display: flex;
+        gap: .5rem;
+        border-bottom: solid 1px #28282B;
+    }
+
+    .reserve-card {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        box-shadow: 0 0 5px 0 grey;
+        width: auto;
+
+        .price-content-w {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .house-price {
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-main-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .price-tag {
+        display: flex;
+    }
+
+    .picture-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .price-content-w {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .appointment-w {
+        display: flex;
+
+        label {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .info-price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .house-price span {
+        font-size: 1rem;
+    }
+
+    .price-wrapper {
+        display: flex;
+        gap: .5rem;
+    }
+
+    .content-star {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .content-fee {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .house-image {
+        width: 40%;
+    }
+
+    .reserve-btn-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .number-of-guest,
+    .number-of-nights {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+    }
+
+    .reserve-btn {
+        background-color: #FF5A5F;
+        color: #fff;
+        font-weight: bold;
+        padding: 1rem 5rem;
+        width: fit-content;
+        border-radius: .5rem;
+        cursor: pointer;
+    }
+
+    .total-price {
+        border-top: solid 1px #28282B;
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+    .cart-icon-wrapper {
+        display: flex;
+
+        &::after {
+            content: "0";
+            display: flex;
+            justify-content: center;
+            font-size: .7rem;
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            transform: translate(20px, -5px);
+            background-color: #FF5A5F;
+            border-radius: 1rem;
+            z-index: 15;
+        }
+    }
+
+    .shopping-cart {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        transition: all .15s ease-in-out;
+
+        &:hover {
+            box-shadow: 0 0 4px 0 rgb(151, 151, 151);
+        }
+    }
+}
