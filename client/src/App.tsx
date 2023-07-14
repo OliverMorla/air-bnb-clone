@@ -1,6 +1,11 @@
+import { FunctionComponent } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Root, {Loader as listingLoader, getRoom as roomLoader} from "./routes/root";
+import Root, {
+  getListing as listingLoader,
+  getRoom as roomLoader,
+} from "./routes/root";
+
 import Error from "./routes/error";
 import Home from "./pages/home";
 import Explore from "./pages/explore";
@@ -25,12 +30,12 @@ const router = createBrowserRouter([
         path: "/explore/:id",
         element: <Room />,
         loader: roomLoader,
-      }
+      },
     ],
   },
 ]);
 
-const App: React.FunctionComponent = () => {
+const App: FunctionComponent = () => {
   return (
     <>
       <RouterProvider router={router} />

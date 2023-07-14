@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import "./style.scss";
 
-interface Props {}
-
-const Home: React.FunctionComponent<Props> = () => {
+const Home: React.FunctionComponent = () => {
   return (
     <main className="home-wrapper">
       <figure>
