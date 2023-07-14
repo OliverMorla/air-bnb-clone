@@ -1,7 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowAltCircleLeft,
   faArrowAltCircleRight,
   faHeart,
   faStar,
@@ -33,7 +32,6 @@ const Explore = () => {
   return (
     <main className="explore-wrapper">
       <section className="categories-wrapper">
-        {/* <FontAwesomeIcon icon={faArrowAltCircleLeft} className="arrow-btn"/> */}
         <div className="categories-scroll">
           <Categories />
         </div>
