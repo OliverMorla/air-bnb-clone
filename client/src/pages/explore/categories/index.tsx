@@ -1,34 +1,50 @@
 const Categories = () => {
+
+  interface Category { 
+    id: number;
+    name: string;
+    source: string;
+  }
+
+  const categories: Array<Category> = [
+    { id: 1, name: 'House', source: './assets/categories/House.svg' },
+    { id: 2, name: 'Farm', source: './assets/categories/Farm.svg' },
+    { id: 3, name: 'Cabin', source: './assets/categories/Cabin.svg' },
+    { id: 4, name: 'Apartment', source: './assets/categories/Apartment.svg' },
+    { id: 5, name: 'Cave', source: './assets/categories/Cave.svg' },
+    { id: 6, name: 'Bed', source: './assets/categories/Bed.svg' },
+    { id: 7, name: 'Castle', source: './assets/categories/Castle.svg' },
+    { id: 8, name: 'Container', source: './assets/categories/Container.svg' },
+    { id: 9, name: 'Guest', source: './assets/categories/Guest.svg' },
+    { id: 10, name: 'Hotel', source: './assets/categories/Hotel.svg' },
+    { id: 11, name: 'Barn', source: './assets/categories/Barn.svg' },
+    { id: 12, name: 'Windmill', source: './assets/categories/Windmill.svg' },
+    { id: 13, name: 'Tent', source: './assets/categories/Tent.svg' },
+    { id: 14, name: 'Trullo', source: './assets/categories/Trullo.svg' },
+    { id: 15, name: 'Raid', source: './assets/categories/Raid.svg' },
+    { id: 16, name: 'Houseboat', source: './assets/categories/Houseboat.svg' },
+    { id: 17, name: 'Dome', source: './assets/categories/Dome.svg' },
+    { id: 18, name: 'Yurt', source: './assets/categories/Yurt.svg' },
+    { id: 19, name: 'TreeHouse', source: './assets/categories/TreeHouse.svg' },
+    { id: 20, name: 'TinyHome', source: './assets/categories/TinyHome.svg' },
+    { id: 21, name: 'Ryokan', source: './assets/categories/Ryokan.svg' },
+    { id: 22, name: 'Dammuso', source: './assets/categories/Dammuso.svg' },
+    { id: 23, name: 'CycladicHome', source: './assets/categories/CycladicHome.svg' },
+    { id: 24, name: 'CasaParticular', source: './assets/categories/CasaParticular.svg' },
+    { id: 25, name: 'Piano', source: './assets/categories/Piano.svg' },
+    { id: 26, name: 'Pool', source: './assets/categories/Pool.svg' },
+    { id: 27, name: 'Patio', source: './assets/categories/Patio.svg' },
+    { id: 28, name: 'Fireplace', source: './assets/categories/Fireplace.svg' }
+  ];
+
   return (
     <>
-      <img src="./assets/categories/House.svg" alt="" className="" />
-      <img src="./assets/categories/Farm.svg" alt="" className="" />
-      <img src="./assets/categories/Cabin.svg" alt="" className="" />
-      <img src="./assets/categories/Apartment.svg" alt="" className="" />
-      <img src="./assets/categories/Cave.svg" alt="" className="" />
-      <img src="./assets/categories/Bed.svg" alt="" className="" />
-      <img src="./assets/categories/Castle.svg" alt="" className="" />
-      <img src="./assets/categories/Container.svg" alt="" className="" />
-      <img src="./assets/categories/Guest.svg" alt="" className="" />
-      <img src="./assets/categories/Hotel.svg" alt="" className="" />
-      <img src="./assets/categories/Barn.svg" alt="" className="" />
-      <img src="./assets/categories/Windmill.svg" alt="" className="" />
-      <img src="./assets/categories/Tent.svg" alt="" className="" />
-      <img src="./assets/categories/Trullo.svg" alt="" className="" />
-      <img src="./assets/categories/Raid.svg" alt="" className="" />
-      <img src="./assets/categories/Houseboat.svg" alt="" className="" />
-      <img src="./assets/categories/Dome.svg" alt="" className="" />
-      <img src="./assets/categories/Yurt.svg" alt="" className="" />
-      <img src="./assets/categories/TreeHouse.svg" alt="" className="" />
-      <img src="./assets/categories/TinyHome.svg" alt="" className="" />
-      <img src="./assets/categories/Ryokan.svg" alt="" className="" />
-      <img src="./assets/categories/Dammuso.svg" alt="" className="" />
-      <img src="./assets/categories/CycladicHome.svg" alt="" className="" />
-      <img src="./assets/categories/CasaParticular.svg" alt="" className="" />
-      <img src="./assets/categories/Piano.svg" alt="" className="" />
-      <img src="./assets/categories/Pool.svg" alt="" className="" />
-      <img src="./assets/categories/Patio.svg" alt="" className="" />
-      <img src="./assets/categories/Fireplace.svg" alt="" className="" />
+      {categories.map((category) => (
+        <div key={category.id} className="category-wrapper">
+          <img src={category.source} alt={category.name} className="category-icon"/>
+          <p>{category.name}</p>
+        </div>
+      ))}
     </>
   );
 };
