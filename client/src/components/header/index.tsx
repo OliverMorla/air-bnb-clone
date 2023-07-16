@@ -21,7 +21,7 @@ interface Props {}
 
 const Header: React.FunctionComponent<Props> = () => {
   const [open, setOpen] = useState<boolean>(false);
-
+ 
   const [openLogin, setOpenLogin] = useState<boolean>(false);
   const [openRegister, setOpenRegister] = useState<boolean>(false);
 
