@@ -1,4 +1,4 @@
-import { useLoaderData, useParams, Link } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -15,7 +15,6 @@ import "./style.scss";
 interface RecordsProps {
   recordid: string;
   fields: {
-    // general
     name?: string;
     host_neighbourhood?: string;
     city?: string;
@@ -32,15 +31,11 @@ interface RecordsProps {
     host_name?: string;
     host_picture_url?: string;
     host_thumbnail_url?: string;
-
-    // fees
     price?: number;
     cleaning_fee?: number;
     security_deposit?: number;
     extra_people?: number;
     guests_included?: number;
-
-    // amenities
     amenities?: string;
     property_type?: string;
     features?: string;
@@ -52,7 +47,7 @@ interface RecordsProps {
 const Room = () => {
   const { id } = useParams();
   const records = useLoaderData() as RecordsProps[];
-  const record = records?.find((record) => record.recordid === id);
+  const record = records?.find((record) => record?.recordid === id);
 
   return (
     <main className="record-wrapper">
@@ -122,9 +117,7 @@ const Room = () => {
                 <option value="6">6</option>
               </select>
             </div>
-            <Link to={""}>
               <div className="reserve-btn">Reserve</div>
-            </Link>
           </div>
           <p> you wont be charged yet </p>
           <div className="price-main-wrapper">
@@ -148,7 +141,7 @@ const Room = () => {
       <div className="house-title">
         {record?.fields.room_type} by {record?.fields.host_name}
         <span>
-          <img src={record?.fields.host_thumbnail_url} alt="" />
+          <img src={record?.fields.host_thumbnail_url} alt="host-thumbnail" />
         </span>
       </div>
       <div className="room-info">
