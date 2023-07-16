@@ -33,12 +33,12 @@ const Explore = () => {
   window.scrollTo(0, 0);
   const records = useLoaderData() as Array<RecordsProps>;
   const [toggle, setToggle] = useState(false);
-  const [scroll, setScroll] = useState(1000);
+  const baseScroll = 1000;
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleScrollBtn = () => {
     scrollRef.current?.scrollTo({
-      left: scroll <= scrollRef.current?.scrollLeft ? 2000 : 1000, 
+      left: baseScroll <= scrollRef.current?.scrollLeft ? 2000 : 1000, 
       behavior: "smooth"
     })
   }
