@@ -1,6 +1,5 @@
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
 import "./style.scss";
 import {
   faFacebook,
@@ -8,11 +7,23 @@ import {
   faApple,
 } from "@fortawesome/free-brands-svg-icons";
 
-const Login = () => {
+interface Props {
+  setOpenLogin: React.Dispatch<boolean>;
+  setOpenRegister: React.Dispatch<boolean>;
+}
+
+const Login: React.FunctionComponent<Props> = ({
+  setOpenLogin,
+  setOpenRegister,
+}) => {
   return (
     <div className="login-dialog">
       <header className="login-header">
-        <FontAwesomeIcon icon={faX} className="x-mark" />
+        <FontAwesomeIcon
+          icon={faX}
+          className="x-mark"
+          onClick={() => setOpenLogin(false)}
+        />
         <p> Log in or Sign Up</p>
       </header>
       <h2> Welcome to Airbnb</h2>
@@ -35,9 +46,15 @@ const Login = () => {
       <button>
         <FontAwesomeIcon icon={faApple} /> Continue with Apple
       </button>
-      <Link to={"/register"}>
-        <p className="register-link">Don't have an account? Sign Up</p>
-      </Link>
+      <p
+        className="register-link"
+        onClick={() => {
+          setOpenLogin(false);
+          setOpenRegister(true);
+        }}
+      >
+        Don't have an account? Sign Up
+      </p>
     </div>
   );
 };

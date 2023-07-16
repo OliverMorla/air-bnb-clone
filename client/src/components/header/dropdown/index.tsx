@@ -1,10 +1,22 @@
 import "./style.scss";
 
-const Dropdown = () => {
+interface Props {
+  setOpenLogin: React.Dispatch<boolean>;
+  setOpenRegister: React.Dispatch<boolean>;
+  openLogin: boolean;
+  openRegister: boolean;
+}
+
+const Dropdown: React.FunctionComponent<Props> = ({
+  setOpenLogin,
+  setOpenRegister,
+  openLogin,
+  openRegister,
+}) => {
   return (
     <section className="dropdown-wrapper">
-      <span>Register</span>
-      <span>Login</span>
+      <span onClick={() => !openLogin && setOpenRegister(true)}>Register</span>
+      <span onClick={() => !openRegister && setOpenLogin(true)}>Login</span>
       <span>Airbnb your home</span>
       <span>Help</span>
     </section>

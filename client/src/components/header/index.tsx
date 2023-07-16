@@ -1,17 +1,29 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-import { faBars, faGlobe, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
+import {
+  faBars,
+  faGlobe,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
+
 import Dropdown from "./dropdown";
+import Login from "../login";
+import Register from "../register";
+
 import "./style.scss";
-// import Login from "../login";
-// import Register from "../register";
 
 interface Props {}
 
 const Header: React.FunctionComponent<Props> = () => {
   const [open, setOpen] = useState<boolean>(false);
+
+  const [openLogin, setOpenLogin] = useState<boolean>(false);
+  const [openRegister, setOpenRegister] = useState<boolean>(false);
 
   return (
     <header>
@@ -38,12 +50,31 @@ const Header: React.FunctionComponent<Props> = () => {
             <FontAwesomeIcon icon={faUser} className="user-image" />
           </section>
         </section>
-        {open && <Dropdown />}
+        {open && (
+          <Dropdown
+            setOpenLogin={setOpenLogin}
+            setOpenRegister={setOpenRegister}
+            openLogin={openLogin}
+            openRegister={openRegister}
+          />
+        )}
       </nav>
-      {/* <div className="login-wrapper">
-        <Login />
-        <Register />
-      </div> */}
+      {openLogin && (
+        <div className="auth-wrapper">
+          <Login
+            setOpenLogin={setOpenLogin}
+            setOpenRegister={setOpenRegister}
+          />
+        </div>
+      )}
+      {openRegister && (
+        <div className="auth-wrapper">
+          <Register
+            setOpenRegister={setOpenRegister}
+            setOpenLogin={setOpenLogin}
+          />
+        </div>
+      )}
     </header>
   );
 };
