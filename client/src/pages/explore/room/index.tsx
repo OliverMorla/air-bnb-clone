@@ -168,7 +168,7 @@ const Room = () => {
   return ( 
     <>
     <h1>
-      Test
+      {id}
     </h1>
     </>
    );
