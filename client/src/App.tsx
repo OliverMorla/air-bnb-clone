@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root, {
   getListing as listingLoader,
-  // getRoom as roomLoader,
+  getRoom as roomLoader,
 } from "./routes/root";
 
 import Error from "./routes/error";
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
       {
         path: "/explore/:id",
         element: <Room />,
-        // loader: roomLoader,
+        loader: roomLoader,
       },
     ],
   },
