@@ -83,7 +83,6 @@ const Explore = () => {
           <Link
             to={`/explore/${record?.recordid}`}
             key={record?.recordid}
-            target="_blank"
           >
             <div className="card">
               <img
