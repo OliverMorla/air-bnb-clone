@@ -29,7 +29,6 @@ interface RecordsProps {
 
 const Explore = () => {
 
-  
   window.scrollTo(0, 0);
   const records = useLoaderData() as Array<RecordsProps>;
   const [toggle, setToggle] = useState(false);

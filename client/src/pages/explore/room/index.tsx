@@ -1,47 +1,51 @@
 import { useLoaderData, useParams, Link } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faStar,
   faHeart,
   faShareSquare,
 } from "@fortawesome/free-regular-svg-icons";
+
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+
 import "./style.scss";
 
 interface RecordsProps {
   recordid: string;
   fields: {
     // general
-    name: string;
-    host_neighbourhood: string;
-    city: string;
-    xl_picture_url: string;
-    medium_url: string;
-    number_of_reviews: number;
-    room_type: string;
-    minimum_nights: number;
-    summary: string;
-    description: string;
-    bedrooms: number;
-    reviews_per_month: number;
-    smart_location: string;
-    host_name: string;
-    host_picture_url: string;
-    host_thumbnail_url: string;
+    name?: string;
+    host_neighbourhood?: string;
+    city?: string;
+    xl_picture_url?: string;
+    medium_url?: string;
+    number_of_reviews?: number;
+    room_type?: string;
+    minimum_nights?: number;
+    summary?: string;
+    description?: string;
+    bedrooms?: number;
+    reviews_per_month?: number;
+    smart_location?: string;
+    host_name?: string;
+    host_picture_url?: string;
+    host_thumbnail_url?: string;
 
     // fees
-    price: number;
-    cleaning_fee: number;
-    security_deposit: number;
-    extra_people: number;
-    guests_included: number;
+    price?: number;
+    cleaning_fee?: number;
+    security_deposit?: number;
+    extra_people?: number;
+    guests_included?: number;
 
     // amenities
-    amenities: string[];
-    property_type: string;
-    features: string;
-    beds: number;
-    bathrooms: number;
+    amenities?: string;
+    property_type?: string;
+    features?: string;
+    beds?: number;
+    bathrooms?: number;
   };
 }
 
@@ -80,7 +84,7 @@ const Room = () => {
       <div className="picture-container">
         <img
           src={record?.fields.xl_picture_url || record?.fields.medium_url}
-          alt=""
+          alt="room/house-image"
           className="house-image"
         />
 
@@ -125,7 +129,7 @@ const Room = () => {
           <p> you wont be charged yet </p>
           <div className="price-main-wrapper">
             <div className="info-price">
-              ${record?.fields.price} night x 13 nights <span> $553 </span>
+              ${record?.fields.price}night x 13 nights<span>$553</span>
             </div>
             <div className="fees-wrapper">
               <div className="content-fee">
@@ -142,9 +146,8 @@ const Room = () => {
         </div>
       </div>
       <div className="house-title">
-        {record?.fields.room_type} by {record?.fields.host_name}{" "}
+        {record?.fields.room_type} by {record?.fields.host_name}
         <span>
-          {" "}
           <img src={record?.fields.host_thumbnail_url} alt="" />
         </span>
       </div>
