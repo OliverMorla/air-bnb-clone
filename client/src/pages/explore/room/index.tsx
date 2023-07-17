@@ -1,4 +1,4 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useParams, Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -117,7 +117,9 @@ const Room = () => {
                 <option value="6">6</option>
               </select>
             </div>
-              <div className="reserve-btn">Reserve</div>
+            <Link to={`/reserve/${id}?guest=1&nights=5&check-in-date=2023-07-23&check-out-date=2023-07-23&price=112`}>
+            <div className="reserve-btn">Reserve</div>
+            </Link>
           </div>
           <p> you wont be charged yet </p>
           <div className="price-main-wrapper">

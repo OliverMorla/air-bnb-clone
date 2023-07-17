@@ -10,6 +10,7 @@ import Error from "./routes/error";
 import Home from "./pages/home";
 import Explore from "./pages/explore";
 import Room from "./pages/explore/room";
+import Reserve from "./pages/reserve";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,14 @@ const router = createBrowserRouter([
         element: <Room />,
         loader: roomLoader,
       },
+      {
+        path: "/reserve",
+        element: <Reserve />,
+      },
+      {
+        path: "/reserve/:id",
+        element: <Reserve />,
+      }
     ],
   },
 ]);
