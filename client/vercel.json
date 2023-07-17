@@ -3,6 +3,7 @@
     { "src": "/", "dest": "/" },
     { "src": "/explore", "dest": "/" },
     { "src": "/explore/:id", "dest": "/" },
-    { "src": "/reserve", "dest": "/"}
+    { "src": "/reserve", "dest": "/"},
+    { "src": "/reserve/:id", "dest": "/"}
   ]
 }

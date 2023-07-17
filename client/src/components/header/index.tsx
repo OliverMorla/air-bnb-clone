@@ -1,27 +1,21 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-
 import {
   faBars,
   faGlobe,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-
 import Dropdown from "./dropdown";
 import Login from "../login";
 import Register from "../register";
-
 import "./style.scss";
 
 interface Props {}
 
 const Header: React.FunctionComponent<Props> = () => {
   const [open, setOpen] = useState<boolean>(false);
- 
   const [openLogin, setOpenLogin] = useState<boolean>(false);
   const [openRegister, setOpenRegister] = useState<boolean>(false);
 

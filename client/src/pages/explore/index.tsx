@@ -1,4 +1,5 @@
-import { useState, useRef} from "react";
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
 import { Link, useLoaderData } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,8 +28,7 @@ interface RecordsProps {
   };
 }
 
-const Explore = () => {
-
+const Explore: React.FunctionComponent = () => {
   window.scrollTo(0, 0);
   const records = useLoaderData() as Array<RecordsProps>;
   const [toggle, setToggle] = useState(false);
@@ -37,22 +37,40 @@ const Explore = () => {
 
   const handleScrollBtn = () => {
     scrollRef.current?.scrollTo({
-      left: baseScroll <= scrollRef.current?.scrollLeft ? 2000 : 1000, 
-      behavior: "smooth"
-    })
-  }
+      left: baseScroll <= scrollRef.current?.scrollLeft ? 2000 : 1000,
+      behavior: "smooth",
+    });
+  };
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    console.log(e.currentTarget.scrollLeft)
-  }
+    console.log(e.currentTarget.scrollLeft);
+  };
+
+  const fadeEffects = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.4 } },
+  };
 
   return (
-    <main className="explore-wrapper">
+    <motion.main
+      className="explore-wrapper"
+      variants={fadeEffects}
+      initial="hidden"
+      animate="visible"
+    >
       <section className="categories-wrapper">
-        <div className="categories-scroll" ref={scrollRef} onScroll={handleScroll}>
+        <div
+          className="categories-scroll"
+          ref={scrollRef}
+          onScroll={handleScroll}
+        >
           <Categories />
         </div>
-        <FontAwesomeIcon icon={faArrowAltCircleRight} className="arrow-btn" onClick={handleScrollBtn}/>
+        <FontAwesomeIcon
+          icon={faArrowAltCircleRight}
+          className="arrow-btn"
+          onClick={handleScrollBtn}
+        />
         <div className="filter-wrapper">
           <FontAwesomeIcon icon={faFilter} className="filter-icon" />
           <span> Filter </span>
@@ -80,10 +98,7 @@ const Explore = () => {
       </div>
       <div className="listing-wrapper">
         {records.map((record) => (
-          <Link
-            to={`/explore/${record?.recordid}`}
-            key={record?.recordid}
-          >
+          <Link to={`/explore/${record?.recordid}`} key={record?.recordid}>
             <div className="card">
               <img
                 src={record?.fields.xl_picture_url || record?.fields.medium_url}
@@ -113,7 +128,7 @@ const Explore = () => {
           </Link>
         ))}
       </div>
-    </main>
+    </motion.main>
   );
 };
 

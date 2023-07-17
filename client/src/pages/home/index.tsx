@@ -1,9 +1,20 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import "./style.scss";
 
 const Home: React.FunctionComponent = () => {
+  const fadeEffects = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.4 } },
+  };
+
   return (
-    <main className="home-wrapper">
+    <motion.main
+      className="home-wrapper"
+      variants={fadeEffects}
+      initial="hidden"
+      animate="visible"
+    >
       <figure>
         <img
           src="/assets/photo-grid.png"
@@ -19,7 +30,7 @@ const Home: React.FunctionComponent = () => {
           <button className="explore-btn">Explore</button>
         </Link>
       </figure>
-    </main>
+    </motion.main>
   );
 };
 

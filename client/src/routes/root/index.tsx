@@ -1,6 +1,6 @@
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import Loading from "../loading";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import Loading from "@/routes/loading";
 import { Navigation, Outlet, useNavigation } from "react-router-dom";
 
 export const getListing = async (): Promise<Array<object>> => {
@@ -23,10 +23,15 @@ const Root: React.FunctionComponent = () => {
   const navigation: Navigation = useNavigation();
   return (
     <>
-      {navigation.state === "loading" && <Loading />}
-      <Header />
-      <Outlet />
-      <Footer />
+      {navigation.state === "loading" ? (
+        <Loading />
+      ) : (
+        <>
+          <Header />
+          <Outlet />
+          <Footer />
+        </>
+      )}
     </>
   );
 };

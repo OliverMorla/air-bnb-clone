@@ -1,11 +1,11 @@
-import "./style.scss"
+import "./style.scss";
 
-const Loading = () => {
-    return (
-        <div className="loading-wrapper">
-            <img src="/loading.gif" alt="" />
-        </div>
-    );
-}
+const Loading: React.FunctionComponent = () => {
+  return (
+    <div className="loading-wrapper">
+      <img src="/loading.gif" alt="loading-gif" />
+    </div>
+  );
+};
 
 export default Loading;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { useLoaderData, useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -29,8 +30,8 @@ interface RecordsProps {
     host_picture_url?: string;
     host_thumbnail_url?: string;
     price?: number;
-    cleaning_fee?: number;
-    security_deposit?: number;
+    cleaning_fee?: number | 0;
+    security_deposit?: number | 0;
     extra_people?: number;
     guests_included?: number;
     amenities?: string;
@@ -49,7 +50,7 @@ interface inputProps {
   price: number | string | undefined;
 }
 
-const Room = () => {
+const Room: React.FunctionComponent = () => {
   const { id } = useParams();
   const records = useLoaderData() as RecordsProps[];
   const record = records?.find((record) => record?.recordid === id);
@@ -74,8 +75,25 @@ const Room = () => {
     }
   }, [input?.check_in_date, input?.check_out_date]);
 
+  const features = record?.fields.features?.split(",");
+  const offers = record?.fields.amenities?.split(",");
+
+  // testing purposes
+  console.log(record);
+  console.log(input);
+
+  const fadeEffects = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+
   return (
-    <main className="record-wrapper">
+    <motion.main
+      className="record-wrapper"
+      variants={fadeEffects}
+      initial="hidden"
+      animate="visible"
+    >
       <div className="house-title">{record?.fields.name}</div>
       <div className="house-title-content">
         <div className="title-content-left">
@@ -187,7 +205,13 @@ const Room = () => {
             </div>
             <div className="fees-wrapper">
               <div className="content-fee">
-                Cleaning fee <span>${record?.fields.cleaning_fee}</span>
+                Cleaning fee{" "}
+                <span>
+                  $
+                  {record?.fields.cleaning_fee !== undefined
+                    ? record?.fields.cleaning_fee
+                    : 0}
+                </span>
               </div>
               <div className="content-fee">
                 Airbnb service fee
@@ -200,7 +224,9 @@ const Room = () => {
                 $
                 {Number(input.nights) * Number(record?.fields.price) +
                   Number(record?.fields.security_deposit) +
-                  Number(record?.fields.cleaning_fee)}
+                  (record?.fields.cleaning_fee !== undefined
+                    ? Number(record?.fields.cleaning_fee)
+                    : 0)}
               </span>
             </div>
           </div>
@@ -218,11 +244,26 @@ const Room = () => {
         <div className="stats">{record?.fields.beds} beds •</div>
         <div className="stats">{record?.fields.bathrooms} bath</div>
       </div>
+      <div className="features-w">
+        <ul>
+          {features?.map((feature, index) => (
+            <li key={index}>{feature}</li>
+          ))}
+        </ul>
+      </div>
       <div className="house-title">Description</div>
       <div>{record?.fields.description}</div>
       <div className="house-title">Summary</div>
       <div>{record?.fields.summary}</div>
-    </main>
+      <div className="offers-w">
+        <h2>What this place offers</h2>
+        <ul>
+          {offers?.map((offer, index) => (
+            <li key={index}>{offer}</li>
+          ))}
+        </ul>
+      </div>
+    </motion.main>
   );
 };
 

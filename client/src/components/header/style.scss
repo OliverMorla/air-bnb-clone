@@ -1,3 +1,5 @@
+@import "@/styles/mixins.scss";
+
 header {
     display: flex;
     height: 100px;
@@ -19,8 +21,8 @@ header {
             }
         }
 
-        .search-wrapper{
-            .search-icon{
+        .search-wrapper {
+            .search-icon {
                 cursor: pointer;
                 background-color: var(--primary);
                 padding: 10px;
@@ -82,7 +84,7 @@ header {
         }
     }
 
-    .auth-wrapper{
+    .auth-wrapper {
         position: absolute;
         display: flex;
         justify-content: center;

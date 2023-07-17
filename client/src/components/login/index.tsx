@@ -1,4 +1,5 @@
 import { faX } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./style.scss";
 import {
@@ -16,8 +17,26 @@ const Login: React.FunctionComponent<Props> = ({
   setOpenLogin,
   setOpenRegister,
 }) => {
+  const fadeEffects = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
   return (
-    <div className="login-dialog">
+    <motion.div
+      className="login-dialog"
+      variants={fadeEffects}
+      initial="hidden"
+      animate="visible"
+    >
       <header className="login-header">
         <FontAwesomeIcon
           icon={faX}
@@ -55,7 +74,7 @@ const Login: React.FunctionComponent<Props> = ({
       >
         Don't have an account? Sign Up
       </p>
-    </div>
+    </motion.div>
   );
 };
 

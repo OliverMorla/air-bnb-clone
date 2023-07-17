@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 import "./style.scss";
+
 interface Props {}
 
 const Reserve: React.FunctionComponent<Props> = () => {
@@ -12,10 +14,22 @@ const Reserve: React.FunctionComponent<Props> = () => {
   const checkInDate = queryParams.get("check-in-date");
   const checkOutDate = queryParams.get("check-out-date");
   const price: number | string | null = queryParams.get("price");
-  console.log(id);
+
+  // testing purposes
+  console.log("id: " + id);
+
+  const fadeEffects = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
 
   return (
-    <main className="reserve-wrapper">
+    <motion.main
+      className="reserve-wrapper"
+      variants={fadeEffects}
+      initial="hidden"
+      animate="visible"
+    >
       <h1 className="reserve-title">Request to Book</h1>
       <section className="content-w">
         <section className="left-content">
@@ -84,7 +98,7 @@ const Reserve: React.FunctionComponent<Props> = () => {
           </div>
         </section>
       </section>
-    </main>
+    </motion.main>
   );
 };
 

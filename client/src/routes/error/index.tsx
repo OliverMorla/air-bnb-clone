@@ -1,9 +1,11 @@
-const Error: React.FunctionComponent = () => {
-    return ( 
-        <main>
-            <h1>Page is still under-development</h1>
-        </main>
-     );
-}
- 
+import "./style.scss"
+
+const Error: React.FunctionComponent = (): JSX.Element => {
+  return (
+    <main className="error-wrapper">
+        <h1>This page is still under construction or does not exist</h1>
+    </main>
+  );
+};
+
 export default Error;

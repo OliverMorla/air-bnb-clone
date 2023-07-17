@@ -9,7 +9,7 @@ import Root, {
 import Error from "./routes/error";
 import Home from "./pages/home";
 import Explore from "./pages/explore";
-import Room from "./pages/explore/room";
+import Room from "./pages/room";
 import Reserve from "./pages/reserve";
 
 const router = createBrowserRouter([
