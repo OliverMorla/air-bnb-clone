@@ -9,7 +9,7 @@ regd_users.get("/reserve", (req, res) => {
     res.send('You are authenticated, hence you can reserve!')
 })
 
-regd_users.get("/login", (req, res) => {
+regd_users.get("/login", (req, res, next) => {
     res.send("You are registered member, hence you can login!")
 })
 
