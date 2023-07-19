@@ -17,6 +17,11 @@ const Login: React.FunctionComponent<Props> = ({
   setOpenLogin,
   setOpenRegister,
 }) => {
+
+  const handleLogin = () => {
+    window.open("http://localhost:5174/auth/google", "_self");
+  }
+
   const fadeEffects = {
     hidden: {
       y: 100,
@@ -56,7 +61,7 @@ const Login: React.FunctionComponent<Props> = ({
         <button type="submit">Sign In</button>
       </form>
       <div>or</div>
-      <button>
+      <button onClick={handleLogin}>
         <FontAwesomeIcon icon={faFacebook} /> Continue with Google
       </button>
       <button>

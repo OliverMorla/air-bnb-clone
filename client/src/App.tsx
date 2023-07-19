@@ -39,7 +39,7 @@ const router = createBrowserRouter([
       {
         path: "/reserve/:id",
         element: <Reserve />,
-      }
+      },
     ],
   },
 ]);

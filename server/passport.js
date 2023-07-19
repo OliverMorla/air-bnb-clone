@@ -1,17 +1,18 @@
 const passport = require("passport");
+const dotenv = require("dotenv");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+
+dotenv.config();
 
 passport.use(
   new GoogleStrategy(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: process.env.REDIRECT_URL_2,
+      callbackURL: process.env.CALLBACK_URL,
     },
-    (accessToken, refreshToken, profile, cb) => {
-      User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        return cb(err, user);
-      });
+    (accessToken, refreshToken, profile, done) => {
+      done(null, profile);
     }
   )
 );
