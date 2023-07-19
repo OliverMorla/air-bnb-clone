@@ -6,6 +6,11 @@ header {
     width: 100%;
     border-bottom: 1px solid #ccc;
 
+    @include sm-down{
+        padding: 25px;
+        height: auto;
+    }
+
     nav {
         position: relative;
         width: inherit;
@@ -13,6 +18,10 @@ header {
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        @include sm-down{
+            flex-direction: column;
+        }
 
         figure {
             .airbnb-logo {
@@ -34,6 +43,11 @@ header {
         .right-section {
             display: flex;
             gap: 10px;
+
+            @include xs{
+                align-items: center;
+                flex-direction: column;
+            }
 
             .options-wrapper {
                 display: flex;
@@ -68,6 +82,10 @@ header {
                 gap: 10px;
                 box-shadow: 0 0 2px var(--quinary);
                 transition: all .15s ease-in-out;
+
+                @include xs{
+                    margin: 0;
+                }
 
                 &:hover {
                     box-shadow: 0 0 6px var(--quinary);

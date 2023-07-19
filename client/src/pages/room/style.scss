@@ -7,6 +7,10 @@
     margin: 20px 300px;
     gap: 15px;
 
+    @include sm-down{
+        margin: 0;
+    }
+
     .house-title {
         font-size: 2rem;
         font-weight: bold;
@@ -25,6 +29,10 @@
             display: flex;
             align-items: center;
             gap: .3rem;
+
+            @include xs{
+                flex-direction: column;
+            }
         }
 
         .btn-wrapper {
@@ -93,11 +101,11 @@
 
     .picture-container {
         display: flex;
-        flex-direction: row;
+       flex-flow: row wrap;;
         justify-content: space-evenly;
         align-items: center;
         gap: 1rem;
-
+       
         img {
             border-radius: 20px;
             box-shadow: 0 0 4px var(--grey);

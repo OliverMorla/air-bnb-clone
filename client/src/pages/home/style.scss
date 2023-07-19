@@ -16,6 +16,10 @@
 
         .photo-grid {
             width: 100%;
+
+            @include xs{
+                width: 90%;
+            }
         }
 
         .image-caption {
@@ -29,6 +33,10 @@
             font-size: 28px;
             font-weight: lighter;
             align-self: flex-start;
+
+            @include xs{
+                font-size: 20px;
+            }
         }
     }
 
