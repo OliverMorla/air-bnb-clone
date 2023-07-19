@@ -20,7 +20,7 @@ const Header: React.FunctionComponent<Props> = () => {
   const [openRegister, setOpenRegister] = useState<boolean>(false);
 
   useEffect(() => {
-    fetch("http://localhost:5174/auth/login/success", {
+    fetch(`${[process.env.AUTHENTICATION_URL]}`,{
       method: "GET",
       credentials: "include",
     })
