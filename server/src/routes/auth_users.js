@@ -12,8 +12,6 @@ regd_users.get(
     passport.authenticate("google", {
         successRedirect: process.env.CLIENT_URL,
         failureRedirect: "/login/failed",
-    }, (req, res) => {
-        res.status(200);
     })
 );
 
