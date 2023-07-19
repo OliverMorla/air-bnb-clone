@@ -19,7 +19,7 @@ const Login: React.FunctionComponent<Props> = ({
 }) => {
 
   const handleLogin = () => {
-    window.open("http://localhost:5174/auth/google", "_self");
+    window.open(process.env.GOOGLE_AUTH_URL, "_self");
   }
 
   const fadeEffects = {
