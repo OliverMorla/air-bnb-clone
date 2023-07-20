@@ -17,10 +17,15 @@ const Login: React.FunctionComponent<Props> = ({
   setOpenLogin,
   setOpenRegister,
 }) => {
-
-  const handleLogin = () => {
-    window.open(`${import.meta.env.VITE_GOOGLE_AUTH_URL}`, "_self");
-  }
+  const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (e.currentTarget.value === "google") {
+      window.open(import.meta.env.VITE_GOOGLE_AUTH_URL, "_self");
+    } else if (e.currentTarget.value === "facebook") {
+      window.open(import.meta.env.VITE_FACEBOOK_AUTH_URL, "_self");
+    } else if (e.currentTarget.value === "apple") {
+      window.open(import.meta.env.VITE_APPLE_AUTH_URL, "_self");
+    }
+  };
 
   const fadeEffects = {
     hidden: {
@@ -61,13 +66,13 @@ const Login: React.FunctionComponent<Props> = ({
         <button type="submit">Sign In</button>
       </form>
       <div>or</div>
-      <button onClick={handleLogin}>
-        <FontAwesomeIcon icon={faFacebook} /> Continue with Google
+      <button onClick={handleLogin} value={"google"}>
+        <FontAwesomeIcon icon={faGoogle} /> Continue with Google
       </button>
-      <button>
-        <FontAwesomeIcon icon={faGoogle} /> Continue with Facebook
+      <button onClick={handleLogin} value={"facebook"}>
+        <FontAwesomeIcon icon={faFacebook} /> Continue with Facebook
       </button>
-      <button>
+      <button onClick={handleLogin} value={"apple"}>
         <FontAwesomeIcon icon={faApple} /> Continue with Apple
       </button>
       <p

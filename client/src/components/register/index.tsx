@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,6 +32,41 @@ const Register: React.FunctionComponent<Props> = ({
     },
   };
 
+  type InputTypes = {
+    username: string;
+    email: string;
+    password: string;
+    password_confirm: string;
+    date_of_birth: string;
+  };
+
+  const [inputs, setInputs] = useState<InputTypes>({
+    username: "",
+    email: "",
+    password: "",
+    password_confirm: "",
+    date_of_birth: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      if (inputs.password === inputs.password_confirm) {
+        console.log("passwords match!");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputs({ ...inputs, [e.currentTarget.name]: e.currentTarget.value });
+  };
+
+  // Testing purposes
+  console.log(inputs);
+
   return (
     <motion.div
       className="register-dialog"
@@ -46,14 +82,49 @@ const Register: React.FunctionComponent<Props> = ({
         />
         <p> Log in or Sign Up</p>
       </header>
-      <form action="">
-        <input type="username" placeholder="Username" />
-        <input type="text" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-        <input type="password" placeholder="Confirm Password" />
-        <label htmlFor="">
+      <form action="" onSubmit={handleSubmit}>
+        <input
+          type="username"
+          name="username"
+          placeholder="Username"
+          onChange={handleInputs}
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={handleInputs}
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={handleInputs}
+          required
+        />
+        <input
+          type="password"
+          name="password_confirm"
+          placeholder="Confirm Password"
+          onChange={handleInputs}
+          required
+        />
+        <label htmlFor="date_of_birth">
           Date of Birth:
-          <input type="date" name="" id="" />
+          <input
+            type="date"
+            name="date_of_birth"
+            id="date_of_birth"
+            required
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setInputs({
+                ...inputs,
+                [e.currentTarget.name]: e.currentTarget.value,
+              })
+            }
+          />
         </label>
         <p>
           We’ll call or text you to confirm your number. Standard message and
@@ -63,10 +134,10 @@ const Register: React.FunctionComponent<Props> = ({
       </form>
       <div>or</div>
       <button>
-        <FontAwesomeIcon icon={faFacebook} /> Continue with Google
+        <FontAwesomeIcon icon={faGoogle} /> Continue with Google
       </button>
       <button>
-        <FontAwesomeIcon icon={faGoogle} /> Continue with Facebook
+        <FontAwesomeIcon icon={faFacebook} /> Continue with Facebook
       </button>
       <button>
         <FontAwesomeIcon icon={faApple} /> Continue with Apple

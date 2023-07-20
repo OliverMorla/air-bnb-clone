@@ -8,31 +8,18 @@ import {
   faHeart,
   faStar,
 } from "@fortawesome/free-regular-svg-icons";
-
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
+
+import { IRecord } from "../room";
 import Categories from "./categories";
 import "./style.scss";
 
-interface RecordsProps {
-  recordid: string;
-  fields: {
-    price: number;
-    name: string;
-    host_neighbourhood: string;
-    city: string;
-    xl_picture_url: string;
-    medium_url: string;
-    number_of_reviews: number;
-    room_type: string;
-    minimum_nights: number;
-  };
-}
 
 const Explore: React.FunctionComponent = () => {
   window.scrollTo(0, 0);
-  const records = useLoaderData() as Array<RecordsProps>;
-  const [toggle, setToggle] = useState(false);
-  const baseScroll = 1000;
+  const records = useLoaderData() as Array<IRecord>;
+  const [toggle, setToggle] = useState<boolean>(false);
+  const baseScroll: number = 1000;
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleScrollBtn = () => {

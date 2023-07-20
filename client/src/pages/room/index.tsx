@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useLoaderData, useParams, Link } from "react-router-dom";
+import {
+  useLoaderData as useLoaderDataRouter,
+  useParams,
+  Link,
+  LoaderFunction,
+} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faStar,
@@ -9,8 +14,18 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import "./style.scss";
+import { getRoom } from "@/routes/root";
 
-interface IRecords {
+export function useLoaderData<T extends LoaderFunction>(){
+  return useLoaderDataRouter() as LoaderData<T>
+}
+export type LoaderData<TLoaderFn extends LoaderFunction> = Awaited<
+  ReturnType<TLoaderFn>
+> extends Response | infer D
+  ? D
+  : never;
+
+export interface IRecord {
   recordid: string;
   fields: {
     name?: string;
@@ -52,17 +67,7 @@ type inputTypes = {
 
 const Room: React.FunctionComponent = (): JSX.Element => {
   const { id } = useParams();
-
-  const getRecords = (): IRecords[] | undefined => {
-    const records = useLoaderData();
-    if (Array.isArray(records) && records.every((record) => typeof record === "object")) {
-      return records;
-    } else {
-      return undefined;
-    }
-  };
-
-  const records = getRecords();
+  const records = useLoaderData<typeof getRoom>();
   const record = records?.find((record) => record?.recordid === id);
 
   const [input, setInput] = useState<inputTypes>({
