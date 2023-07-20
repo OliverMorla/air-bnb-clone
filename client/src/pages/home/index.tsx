@@ -1,13 +1,9 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { fadeEffects } from "@/animations";
 import "./style.scss";
 
-const Home: React.FunctionComponent = () => {
-  const fadeEffects = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.4 } },
-  };
-
+const Home: React.FunctionComponent = (): JSX.Element => {
   return (
     <motion.main
       className="home-wrapper"

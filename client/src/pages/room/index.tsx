@@ -13,11 +13,16 @@ import {
   faShareSquare,
 } from "@fortawesome/free-regular-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import "./style.scss";
+import { RoomInputTypes } from "@/types/types";
+import { fadeEffects } from "@/animations";
 import { getRoom } from "@/routes/root";
+import "./style.scss";
 
-export function useLoaderData<T extends LoaderFunction>(){
-  return useLoaderDataRouter() as LoaderData<T>
+// Renamed Original Hook "UseLoaderData" to "UseLoaderDataRouter" to avoid conflict with the new hook "UseLoaderData.
+// This hook takes a generic type argument, which is the type of the loader function you want to use; it returns the data that the loader function returns.
+export function useLoaderData<T extends LoaderFunction>() {
+  return useLoaderDataRouter() as LoaderData<T>;
+  // The result of useLoaderDataRouter is a union of all the possible return types of the loader functions.
 }
 export type LoaderData<TLoaderFn extends LoaderFunction> = Awaited<
   ReturnType<TLoaderFn>
@@ -25,52 +30,12 @@ export type LoaderData<TLoaderFn extends LoaderFunction> = Awaited<
   ? D
   : never;
 
-export interface IRecord {
-  recordid: string;
-  fields: {
-    name?: string;
-    host_neighbourhood?: string;
-    city?: string;
-    xl_picture_url?: string;
-    medium_url?: string;
-    number_of_reviews?: number;
-    room_type?: string;
-    minimum_nights?: number;
-    summary?: string;
-    description?: string;
-    bedrooms?: number;
-    reviews_per_month?: number;
-    smart_location?: string;
-    host_name?: string;
-    host_picture_url?: string;
-    host_thumbnail_url?: string;
-    price?: number;
-    cleaning_fee?: number | 0;
-    security_deposit?: number | 0;
-    extra_people?: number;
-    guests_included?: number;
-    amenities?: string;
-    property_type?: string;
-    features?: string;
-    beds?: number;
-    bathrooms?: number;
-  };
-}
-
-type inputTypes = {
-  guest: number | string;
-  nights: number | string;
-  check_in_date: number | string;
-  check_out_date: number | string;
-  price: number | string | undefined;
-};
-
 const Room: React.FunctionComponent = (): JSX.Element => {
-  const { id } = useParams();
+  const { id } = useParams<string>();
   const records = useLoaderData<typeof getRoom>();
   const record = records?.find((record) => record?.recordid === id);
 
-  const [input, setInput] = useState<inputTypes>({
+  const [input, setInput] = useState<RoomInputTypes>({
     guest: 0,
     nights: 0,
     check_in_date: "",
@@ -78,15 +43,15 @@ const Room: React.FunctionComponent = (): JSX.Element => {
     price: record?.fields.price,
   });
 
-  const features = record?.fields.features?.split(",");
-  const offers = record?.fields.amenities?.split(",");
+  const features: string[] | undefined = record?.fields.features?.split(",");
+  const offers: string[] | undefined = record?.fields.amenities?.split(",");
 
   useEffect(() => {
     //date format: yyyy-mm-dd
     if (input?.check_in_date && input?.check_out_date) {
       const checkInDate = new Date(input?.check_in_date);
       const checkOutDate = new Date(input?.check_out_date);
-      const nights = checkOutDate.getDate() - checkInDate.getDate();
+      const nights: number = checkOutDate.getDate() - checkInDate.getDate();
       setInput({ ...input, nights: nights });
     }
   }, [input?.check_in_date, input?.check_out_date]);
@@ -94,11 +59,6 @@ const Room: React.FunctionComponent = (): JSX.Element => {
   // testing purposes
   console.log(record);
   console.log(input);
-
-  const fadeEffects = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
 
   return (
     <motion.main

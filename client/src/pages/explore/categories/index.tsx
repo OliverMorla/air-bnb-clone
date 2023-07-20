@@ -1,10 +1,6 @@
-const Categories: React.FunctionComponent = () => {
-  interface Category {
-    id: number;
-    name: string;
-    source: string;
-  }
+import { Category } from "@/types/types";
 
+const Categories: React.FunctionComponent = () => {
   const categories: Array<Category> = [
     { id: 1, name: "House", source: "./assets/categories/House.svg" },
     { id: 2, name: "Farm", source: "./assets/categories/Farm.svg" },

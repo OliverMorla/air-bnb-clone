@@ -7,7 +7,7 @@ footer {
     border-top: 1px solid #76767650;
     min-height: 50px;
 
-    @include sm-down{
+    @include sm-down {
         padding-top: 20px;
         justify-content: center;
         min-height: auto;

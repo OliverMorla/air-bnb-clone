@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { fadeEffects } from "@/animations";
 import { motion } from "framer-motion";
 import "./style.scss";
 
@@ -9,19 +10,14 @@ const Reserve: React.FunctionComponent<Props> = () => {
 
   const queryParams = new URLSearchParams(window.location.search);
 
-  const number_of_guest: number | string | null = queryParams.get("guest");
-  const number_of_nights: number | string | null = queryParams.get("nights");
-  const checkInDate = queryParams.get("check-in-date");
-  const checkOutDate = queryParams.get("check-out-date");
-  const price: number | string | null = queryParams.get("price");
+  const number_of_guest: string | null = queryParams.get("guest");
+  const number_of_nights: string | null = queryParams.get("nights");
+  const checkInDate: string | null = queryParams.get("check-in-date");
+  const checkOutDate: string | null = queryParams.get("check-out-date");
+  const price: string | null = queryParams.get("price");
 
   // testing purposes
   console.log("id: " + id);
-
-  const fadeEffects = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
 
   return (
     <motion.main

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { RegisterInputTypes } from "@/types/types";
+import { fadeEffects2 } from "@/animations";
 import "./style.scss";
 import {
   faFacebook,
@@ -18,29 +20,7 @@ const Register: React.FunctionComponent<Props> = ({
   setOpenRegister,
   setOpenLogin,
 }) => {
-  const fadeEffects = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
-  type InputTypes = {
-    username: string;
-    email: string;
-    password: string;
-    password_confirm: string;
-    date_of_birth: string;
-  };
-
-  const [inputs, setInputs] = useState<InputTypes>({
+  const [inputs, setInputs] = useState<RegisterInputTypes>({
     username: "",
     email: "",
     password: "",
@@ -70,7 +50,7 @@ const Register: React.FunctionComponent<Props> = ({
   return (
     <motion.div
       className="register-dialog"
-      variants={fadeEffects}
+      variants={fadeEffects2}
       initial="hidden"
       animate="visible"
     >

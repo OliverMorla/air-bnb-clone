@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Link, useLoaderData } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowAltCircleRight,
@@ -9,20 +8,19 @@ import {
   faStar,
 } from "@fortawesome/free-regular-svg-icons";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
-
-import { IRecord } from "../room";
+import { useLoaderData } from "../room";
 import Categories from "./categories";
+import { getListing } from "@/routes/root";
 import "./style.scss";
 
-
-const Explore: React.FunctionComponent = () => {
+const Explore: React.FunctionComponent = (): JSX.Element => {
   window.scrollTo(0, 0);
-  const records = useLoaderData() as Array<IRecord>;
+  const records = useLoaderData<typeof getListing>();
   const [toggle, setToggle] = useState<boolean>(false);
   const baseScroll: number = 1000;
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const handleScrollBtn = () => {
+  const handleScrollBtn = (): void => {
     scrollRef.current?.scrollTo({
       left: baseScroll <= scrollRef.current?.scrollLeft ? 2000 : 1000,
       behavior: "smooth",
@@ -89,7 +87,7 @@ const Explore: React.FunctionComponent = () => {
             <div className="card">
               <img
                 src={record?.fields.xl_picture_url || record?.fields.medium_url}
-                alt=""
+                alt="room-picture"
               />
               <FontAwesomeIcon icon={faHeart} className="heart-icon" />
               <div className="card-content">
