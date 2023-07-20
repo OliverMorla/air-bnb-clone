@@ -1,4 +1,3 @@
-import { FunctionComponent } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root, {
@@ -44,7 +43,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-const App: FunctionComponent = () => {
+const App: React.FunctionComponent = () => {
   return (
     <>
       <RouterProvider router={router} />

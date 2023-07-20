@@ -10,7 +10,7 @@ import {
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import "./style.scss";
 
-interface RecordsProps {
+interface IRecords {
   recordid: string;
   fields: {
     name?: string;
@@ -42,20 +42,30 @@ interface RecordsProps {
   };
 }
 
-interface inputProps {
+type inputTypes = {
   guest: number | string;
   nights: number | string;
   check_in_date: number | string;
   check_out_date: number | string;
   price: number | string | undefined;
-}
+};
 
-const Room: React.FunctionComponent = () => {
+const Room: React.FunctionComponent = (): JSX.Element => {
   const { id } = useParams();
-  const records = useLoaderData() as RecordsProps[];
+
+  const getRecords = (): IRecords[] | undefined => {
+    const records = useLoaderData();
+    if (Array.isArray(records) && records.every((record) => typeof record === "object")) {
+      return records;
+    } else {
+      return undefined;
+    }
+  };
+
+  const records = getRecords();
   const record = records?.find((record) => record?.recordid === id);
 
-  const [input, setInput] = useState<inputProps>({
+  const [input, setInput] = useState<inputTypes>({
     guest: 0,
     nights: 0,
     check_in_date: "",
@@ -63,20 +73,18 @@ const Room: React.FunctionComponent = () => {
     price: record?.fields.price,
   });
 
+  const features = record?.fields.features?.split(",");
+  const offers = record?.fields.amenities?.split(",");
+
   useEffect(() => {
     //date format: yyyy-mm-dd
     if (input?.check_in_date && input?.check_out_date) {
       const checkInDate = new Date(input?.check_in_date);
       const checkOutDate = new Date(input?.check_out_date);
-
       const nights = checkOutDate.getDate() - checkInDate.getDate();
-
       setInput({ ...input, nights: nights });
     }
   }, [input?.check_in_date, input?.check_out_date]);
-
-  const features = record?.fields.features?.split(",");
-  const offers = record?.fields.amenities?.split(",");
 
   // testing purposes
   console.log(record);
