@@ -13,6 +13,10 @@
         gap: 15px;
         margin: 0 80px;
 
+        @include xs{
+            margin: 0;
+        }
+
         .arrow-btn {
             cursor: pointer;
             font-size: 24px;
@@ -24,13 +28,16 @@
             overflow-x: scroll;
             gap: 30px;
 
-
             &::-webkit-scrollbar {
                 height: 5px;
             }
 
             &::-webkit-scrollbar-track {
                 background: transparent;
+
+                @include xs{
+                    background: var(--grey);
+                }
             }
 
             .category-wrapper {
@@ -47,6 +54,10 @@
 
                 &:first-child {
                     border-bottom: 2px solid var(--quinary);
+
+                    @include xs{
+                        border-bottom: none;
+                    }
                 }
 
                 .category-icon {
@@ -102,6 +113,10 @@
             border: 1px solid var(--grey);
             padding: 1em;
             border-radius: 0.5em;
+
+            @include xs{
+                font-size: 12px;
+            }
 
             .text {
                 display: flex;
