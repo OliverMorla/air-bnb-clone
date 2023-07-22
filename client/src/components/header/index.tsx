@@ -23,6 +23,10 @@ const Header: React.FunctionComponent<Props> = () => {
     fetch(`${import.meta.env.VITE_AUTHENTICATION_URL}`, {
       method: "GET",
       credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*", 
+      }
     })
       .then((res) => res.json())
       .then((data) => console.log(data))

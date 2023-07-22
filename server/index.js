@@ -25,11 +25,10 @@ app.use(
 
 app.use(passport.initialize())
 app.use(passport.authenticate('session'))
-app.use(passport.session());
 
 app.use(cors({
     origin: process.env.CLIENT_URL,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
     credentials: true,
 }))
 

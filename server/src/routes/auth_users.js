@@ -1,14 +1,16 @@
 const express = require("express");
 const passport = require("passport");
 const regd_users = express.Router();
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 regd_users.get("/google", passport.authenticate("google", { scope: ["profile"] }));
-regd_users.get(
-    "/google/callback",
-    passport.authenticate("google", {
-        successRedirect: process.env.CLIENT_URL,
-        failureRedirect: "/login/failed",
-    })
+regd_users.get("/google/callback",
+    passport.authenticate("google", { successRedirect: process.env.CLIENT_URL, failureRedirect: "/login/failed" }),
+    function (req, res) {
+        res.redirect('')
+    }
 );
 
 regd_users.get("/facebook", passport.authenticate('facebook'))
