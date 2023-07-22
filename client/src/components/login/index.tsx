@@ -8,7 +8,7 @@ import "./style.scss";
 import {
   faFacebook,
   faGoogle,
-  faApple,
+  faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 
 interface Props {
@@ -31,7 +31,7 @@ const Login: React.FunctionComponent<Props> = ({
     } else if (e.currentTarget.value === "facebook") {
       window.open(import.meta.env.VITE_FACEBOOK_AUTH_URL, "_self");
     } else if (e.currentTarget.value === "apple") {
-      window.open(import.meta.env.VITE_APPLE_AUTH_URL, "_self");
+      window.open(import.meta.env.VITE_GITHUB_AUTH_URL, "_self");
     }
   };
 
@@ -91,7 +91,7 @@ const Login: React.FunctionComponent<Props> = ({
         <FontAwesomeIcon icon={faFacebook} /> Continue with Facebook
       </button>
       <button onClick={handleLogin} value={"apple"}>
-        <FontAwesomeIcon icon={faApple} /> Continue with Apple
+        <FontAwesomeIcon icon={faGithub} /> Continue with Github
       </button>
       <p
         className="register-link"

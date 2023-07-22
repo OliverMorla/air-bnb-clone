@@ -1,6 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
+const dotenv = require("dotenv").config();
 const cors = require("cors")
 
 const app = express();
@@ -16,13 +17,14 @@ app.use(express.json());
 app.use(
     session({
         name: "session",
-        secret: ["googleAuth"],
+        secret: "googleAuth",
         resave: false,
         saveUninitialized: false,
     })
 );
 
 app.use(passport.initialize())
+app.use(passport.authenticate('session'))
 app.use(passport.session());
 
 app.use(cors({

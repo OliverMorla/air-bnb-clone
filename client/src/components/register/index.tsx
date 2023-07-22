@@ -8,7 +8,7 @@ import "./style.scss";
 import {
   faFacebook,
   faGoogle,
-  faApple,
+  faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 
 interface Props {
@@ -120,7 +120,7 @@ const Register: React.FunctionComponent<Props> = ({
         <FontAwesomeIcon icon={faFacebook} /> Continue with Facebook
       </button>
       <button>
-        <FontAwesomeIcon icon={faApple} /> Continue with Apple
+        <FontAwesomeIcon icon={faGithub} /> Continue with Github
       </button>
       <p
         className="login-link"
