@@ -25,8 +25,8 @@ const Header: React.FunctionComponent<Props> = () => {
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*", 
-      }
+        "Access-Control-Allow-Origin": "*",
+      },
     })
       .then((res) => res.json())
       .then((data) => console.log(data))

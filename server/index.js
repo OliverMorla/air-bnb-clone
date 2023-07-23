@@ -8,6 +8,7 @@ const app = express();
 const PORT = 5174;
 
 require('./passport')
+require('./src/db.js')
 
 const member_routes = require("./src/routes/auth_users").auth_users;
 const guest_routes = require("./src/routes/public_users").public_users;

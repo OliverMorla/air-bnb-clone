@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require("passport");
 const regd_users = express.Router();
 const dotenv = require("dotenv");
+const db = require("../db")
 
 dotenv.config();
 
@@ -47,6 +48,9 @@ regd_users.get("/login/failed", (req, res) => {
 });
 
 regd_users.get("/login", (req, res, next) => {
+    db.connect((err) => {
+        
+    })
     res.send("You are registered member, hence you can login!");
 });
 
