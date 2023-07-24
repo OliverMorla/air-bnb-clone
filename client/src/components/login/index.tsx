@@ -25,7 +25,7 @@ const Login: React.FunctionComponent<Props> = ({
     password: "",
   });
 
-  const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleOAuth = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (e.currentTarget.value === "google") {
       window.open(import.meta.env.VITE_GOOGLE_AUTH_URL, "_self");
     } else if (e.currentTarget.value === "facebook") {
@@ -39,7 +39,7 @@ const Login: React.FunctionComponent<Props> = ({
     setInputs({ ...inputs, [e.currentTarget.name]: e.currentTarget.value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
@@ -84,13 +84,13 @@ const Login: React.FunctionComponent<Props> = ({
         <button type="submit">Sign In</button>
       </form>
       <div>or</div>
-      <button onClick={handleLogin} value={"google"}>
+      <button onClick={handleOAuth} value={"google"}>
         <FontAwesomeIcon icon={faGoogle} /> Continue with Google
       </button>
-      <button onClick={handleLogin} value={"facebook"}>
+      <button onClick={handleOAuth} value={"facebook"}>
         <FontAwesomeIcon icon={faFacebook} /> Continue with Facebook
       </button>
-      <button onClick={handleLogin} value={"apple"}>
+      <button onClick={handleOAuth} value={"apple"}>
         <FontAwesomeIcon icon={faGithub} /> Continue with Github
       </button>
       <p

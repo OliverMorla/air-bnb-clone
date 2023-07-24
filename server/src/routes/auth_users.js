@@ -47,16 +47,30 @@ regd_users.get("/login/failed", (req, res) => {
     });
 });
 
-regd_users.get("/login", (req, res, next) => {
-    db.connect((err) => {
-        
-    })
+regd_users.post("/login", (req, res, next) => {
+    const { email, password } = req.body
+    const q = `
+    SELECT *
+    FROM users
+    WHERE email = ?
+    `
+    db.query(q, [email], (err, results) => {
+        if(err) throw err
+    }) 
+
     res.send("You are registered member, hence you can login!");
 });
 
-regd_users.get("/logout", (req, res) => {
-    req.logout();
-    res.redirect(process.env.CLIENT_URL);
+regd_users.post("/logout", (req, res, next) => {
+    req.logout((err) => {
+        if(err) {
+            return res.status(404).json({
+                message: "Operation failed",
+                error: err,
+            })
+        }
+        res.redirect(process.env.CLIENT_URL);
+    });
 });
 
 regd_users.get("/reserve", (req, res) => {

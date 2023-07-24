@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
@@ -18,20 +18,6 @@ const Header: React.FunctionComponent<Props> = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [openLogin, setOpenLogin] = useState<boolean>(false);
   const [openRegister, setOpenRegister] = useState<boolean>(false);
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_AUTHENTICATION_URL}`, {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
-  }, []);
 
   return (
     <header>

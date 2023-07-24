@@ -64,3 +64,26 @@ export type RoomInputTypes = {
   check_out_date: number | string;
   price: number | string | undefined;
 };
+
+
+// Authenticated User
+export interface User { 
+    id: number | string;
+    displayName: string;
+    photos: object[]
+  
+}
+export interface AuthenticatedUser {
+  authenticated?: boolean;
+  message?: string;
+  user?: User;
+}
+
+// Authentication Context
+export interface AuthContextProps {
+  userInfo: AuthenticatedUser | undefined;
+  setUserInfo: React.Dispatch<React.SetStateAction<AuthenticatedUser | undefined>>;
+  login: (inputs: BodyInit) => Promise<any>;
+  logout: () => Promise<any>;
+  register: (inputs: BodyInit) => Promise<any>;
+}
