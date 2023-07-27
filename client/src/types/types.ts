@@ -63,8 +63,8 @@ export type RoomInputTypes = {
   check_in_date: number | string;
   check_out_date: number | string;
   price: number | string | undefined;
+  name: string | undefined;
 };
-
 
 // Authenticated User
 export interface User { 

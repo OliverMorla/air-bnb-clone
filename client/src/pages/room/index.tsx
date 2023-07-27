@@ -41,6 +41,7 @@ const Room: React.FunctionComponent = (): JSX.Element => {
     check_in_date: "",
     check_out_date: "",
     price: record?.fields.price,
+    name: record?.fields.name,
   });
 
   const features: string[] | undefined = record?.fields.features?.split(",");
@@ -163,7 +164,7 @@ const Room: React.FunctionComponent = (): JSX.Element => {
               </select>
             </div>
             <Link
-              to={`/reserve/${id}?guest=${input.guest}&nights=${input.nights}&check-in-date=${input.check_in_date}&check-out-date=${input.check_out_date}&price=${input.price}`}
+              to={`/reserve/${id}?name=${input.name}&guest=${input.guest}&nights=${input.nights}&check-in-date=${input.check_in_date}&check-out-date=${input.check_out_date}&price=${input.price}`}
             >
               <div className="reserve-btn">Reserve</div>
             </Link>
@@ -188,7 +189,7 @@ const Room: React.FunctionComponent = (): JSX.Element => {
               </div>
               <div className="content-fee">
                 Airbnb service fee
-                <span>${record?.fields.security_deposit}</span>
+                <span>${record?.fields.security_deposit || 0}</span>
               </div>
             </div>
             <div className="total-price">

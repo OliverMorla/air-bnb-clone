@@ -28,12 +28,24 @@ const Register: React.FunctionComponent<Props> = ({
     date_of_birth: "",
   });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
       if (inputs.password === inputs.password_confirm) {
-        console.log("passwords match!");
+        try {
+          const res = await fetch(import.meta.env.VITE_AUTH_REGISTER_URL, {
+            method: "POST",
+            body: JSON.stringify(inputs),
+            headers: {
+              "Content-Type": "application/json",
+            }
+          });
+          const response = await res.json();
+          console.log(response)
+        } catch (err) {
+          console.log(err);
+        }
       }
     } catch (err) {
       console.log(err);

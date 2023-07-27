@@ -5,14 +5,16 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const useAuth = (): AuthContextProps => {
   const context = useContext(AuthContext);
-  if(!context){
+  if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };
 
-export function AuthProvider({ children }: {children: React.ReactNode}) {
-  const [userInfo, setUserInfo] = useState<AuthenticatedUser | undefined>(undefined);
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [userInfo, setUserInfo] = useState<AuthenticatedUser | undefined>(
+    undefined
+  );
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -37,9 +39,10 @@ export function AuthProvider({ children }: {children: React.ReactNode}) {
     }
     getUserInfo();
   }, []);
-  
-  // testing
-  console.log("loading: " + loading)
+
+  // testing purposes
+  console.log(userInfo === undefined && "Not Authenticated");
+  // console.log("loading: " + loading)
 
   async function login(inputs: BodyInit): Promise<any> {
     try {
@@ -63,8 +66,9 @@ export function AuthProvider({ children }: {children: React.ReactNode}) {
         method: "POST",
         body: inputs,
       });
-      const data = await res.json();
-      return data;
+      console.log(res);
+      const response = res.json();
+      console.log(response)
     } catch (error) {
       console.error(error);
       throw error;

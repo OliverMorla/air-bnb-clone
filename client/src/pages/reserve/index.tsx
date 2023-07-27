@@ -15,9 +15,36 @@ const Reserve: React.FunctionComponent<Props> = () => {
   const checkInDate: string | null = queryParams.get("check-in-date");
   const checkOutDate: string | null = queryParams.get("check-out-date");
   const price: string | null = queryParams.get("price");
+  const name: string | null = queryParams.get("name");
 
   // testing purposes
   console.log("id: " + id);
+
+  const handleReserve = async () => {
+    const data = {
+      number_of_guest,
+      number_of_nights,
+      checkInDate,
+      checkOutDate,
+      price,
+      name,
+    };
+    
+    try {
+      const res = await fetch(import.meta.env.VITE_STRIPE_API_URL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        }
+      })
+      const response = await res.json();
+      window.location.href = response.url;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <motion.main
@@ -92,6 +119,10 @@ const Reserve: React.FunctionComponent<Props> = () => {
               <span> ${Number(number_of_nights) * Number(price)} </span>
             </p>
           </div>
+          <button onClick={handleReserve} className="confirm-reserve-btn">
+            {" "}
+            Confirm Reservation{" "}
+          </button>
         </section>
       </section>
     </motion.main>

@@ -10,6 +10,8 @@ import Home from "./pages/home";
 import Explore from "./pages/explore";
 import Room from "./pages/room";
 import Reserve from "./pages/reserve";
+import Failed from "./pages/failed";
+import Success from "./pages/sucess";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
       {
         path: "/reserve/:id",
         element: <Reserve />,
+      },
+      {
+        path: "/reserve-success",
+        element: <Success />,
+      },
+      {
+        path: "/reserve-failed",
+        element: <Failed />,
       },
     ],
   },

@@ -1,0 +1,21 @@
+.success-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    p {
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+}
