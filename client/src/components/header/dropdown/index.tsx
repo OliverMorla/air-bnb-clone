@@ -16,11 +16,16 @@ const Dropdown: React.FunctionComponent<Props> = ({
   openLogin,
   openRegister,
 }) => {
+  const { logout, userInfo } = useAuth();
   const handleLogout = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-  
-  }
-  const { userInfo } = useAuth();
+    e.preventDefault();
+    try {
+      const res: { status: number; message: string } = await logout();
+      console.log(res);
+    } catch (err: unknown) {
+      if (err instanceof Error) console.log(err.message);
+    }
+  };
   console.log(userInfo !== undefined && userInfo);
   return (
     <motion.section
@@ -29,8 +34,18 @@ const Dropdown: React.FunctionComponent<Props> = ({
       initial="hidden"
       animate="visible"
     >
-      {userInfo ? <span> {userInfo?.user?.displayName} </span>  : <span onClick={() => !openLogin && setOpenRegister(true)}>Register</span>}
-      {userInfo ? <span onClick={handleLogout}> Log Out </span> : <span onClick={() => !openRegister && setOpenLogin(true)}>Login</span>}
+      {userInfo ? (
+        <span> {userInfo?.user?.displayName} </span>
+      ) : (
+        <span onClick={() => !openLogin && setOpenRegister(true)}>
+          Register
+        </span>
+      )}
+      {userInfo ? (
+        <span onClick={handleLogout}> Log Out </span>
+      ) : (
+        <span onClick={() => !openRegister && setOpenLogin(true)}>Login</span>
+      )}
       <span>Airbnb your home</span>
       <span>Help</span>
     </motion.section>

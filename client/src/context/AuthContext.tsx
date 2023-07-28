@@ -1,5 +1,6 @@
-import { useContext, createContext, useState, useEffect } from "react";
+import { useContext, createContext, useState } from "react";
 import { AuthenticatedUser, AuthContextProps } from "@/types/types";
+import { GET, headers } from "@/config/fetch.config";
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
@@ -15,63 +16,48 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [userInfo, setUserInfo] = useState<AuthenticatedUser | undefined>(
     undefined
   );
-  const [loading, setLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    async function getUserInfo() {
-      try {
-        const res = await fetch(import.meta.env.VITE_AUTHENTICATION_URL, {
-          method: "GET",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-        });
-        const data = await res.json();
-        setUserInfo(data);
-      } catch (error) {
-        console.error(error);
-        throw error;
-      } finally {
-        setLoading(false);
-      }
-    }
-    getUserInfo();
-  }, []);
-
-  // testing purposes
-  console.log(userInfo === undefined && "Not Authenticated");
-  // console.log("loading: " + loading)
 
   async function login(inputs: BodyInit): Promise<any> {
     try {
       const res = await fetch(import.meta.env.VITE_AUTH_LOGIN_URL, {
         method: "POST",
         body: inputs,
+        ...headers,
       });
       const data = await res.json();
       setUserInfo(data);
-    } catch (error) {
-      console.error(error);
-      throw error;
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return err.message;
+      }
     }
   }
 
-  async function logout(): Promise<any> {}
+  async function logout(): Promise<any> {
+    try {
+      const res = await fetch(import.meta.env.VITE_AUTH_LOGOUT_URL, GET);
+      const response = await res.json();
+      return response;
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return err.message;
+      }
+    }
+  }
 
   async function register(inputs: BodyInit): Promise<any> {
     try {
       const res = await fetch(import.meta.env.VITE_AUTH_REGISTER_URL, {
         method: "POST",
         body: inputs,
+        ...headers,
       });
-      console.log(res);
-      const response = res.json();
-      console.log(response)
-    } catch (error) {
-      console.error(error);
-      throw error;
+      const response = await res.json();
+      return response;
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return err.message;
+      }
     }
   }
 

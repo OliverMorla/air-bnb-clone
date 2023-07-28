@@ -10,6 +10,7 @@ import {
   faGoogle,
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
+import { useAuth } from "@/context/AuthContext";
 
 interface Props {
   setOpenRegister: React.Dispatch<boolean>;
@@ -20,6 +21,7 @@ const Register: React.FunctionComponent<Props> = ({
   setOpenRegister,
   setOpenLogin,
 }) => {
+  const { register } = useAuth();
   const [inputs, setInputs] = useState<RegisterInputTypes>({
     username: "",
     email: "",
@@ -30,25 +32,15 @@ const Register: React.FunctionComponent<Props> = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    try {
-      if (inputs.password === inputs.password_confirm) {
-        try {
-          const res = await fetch(import.meta.env.VITE_AUTH_REGISTER_URL, {
-            method: "POST",
-            body: JSON.stringify(inputs),
-            headers: {
-              "Content-Type": "application/json",
-            }
-          });
-          const response = await res.json();
-          console.log(response)
-        } catch (err) {
-          console.log(err);
-        }
+    if (inputs.password === inputs.password_confirm) {
+      try {
+        const res: { status: number; message: string } = await register(
+          JSON.stringify(inputs)
+        );
+        console.log(res);
+      } catch (err: unknown) {
+        if (err instanceof Error) console.log(err.message);
       }
-    } catch (err) {
-      console.log(err);
     }
   };
 

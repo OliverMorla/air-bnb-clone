@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fadeEffects2 } from "@/animations";
 import { LoginInputTypes } from "@/types/types";
+import { useAuth } from "@/context/AuthContext";
 import "./style.scss";
 import {
   faFacebook,
@@ -20,6 +21,7 @@ const Login: React.FunctionComponent<Props> = ({
   setOpenLogin,
   setOpenRegister,
 }) => {
+  const { login } = useAuth();
   const [inputs, setInputs] = useState<LoginInputTypes>({
     email: "",
     password: "",
@@ -30,7 +32,7 @@ const Login: React.FunctionComponent<Props> = ({
       window.open(import.meta.env.VITE_GOOGLE_AUTH_URL, "_self");
     } else if (e.currentTarget.value === "facebook") {
       window.open(import.meta.env.VITE_FACEBOOK_AUTH_URL, "_self");
-    } else if (e.currentTarget.value === "apple") {
+    } else if (e.currentTarget.value === "github") {
       window.open(import.meta.env.VITE_GITHUB_AUTH_URL, "_self");
     }
   };
@@ -41,6 +43,14 @@ const Login: React.FunctionComponent<Props> = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    try {
+      const res: { status: number; message: string } = await login(
+        JSON.stringify(inputs)
+      );
+      console.log(res);
+    } catch (err: unknown) {
+      if (err instanceof Error) console.log(err.message);
+    }
   };
 
   //testing purposes
@@ -90,7 +100,7 @@ const Login: React.FunctionComponent<Props> = ({
       <button onClick={handleOAuth} value={"facebook"}>
         <FontAwesomeIcon icon={faFacebook} /> Continue with Facebook
       </button>
-      <button onClick={handleOAuth} value={"apple"}>
+      <button onClick={handleOAuth} value={"github"}>
         <FontAwesomeIcon icon={faGithub} /> Continue with Github
       </button>
       <p

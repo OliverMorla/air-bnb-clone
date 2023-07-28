@@ -2,7 +2,15 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Loading from "@/routes/loading";
 import { IRecord, LoaderResponse } from "@/types/types";
-import { Navigation, Outlet, useNavigation } from "react-router-dom";
+import { GET_c } from "@/config/fetch.config";
+import {
+  Navigation,
+  Outlet,
+  useNavigation,
+  useLocation,
+} from "react-router-dom";
+import { useEffect } from "react";
+import { useAuth } from "@/context/AuthContext";
 
 export const getListing = async (): Promise<IRecord[]> => {
   try {
@@ -31,7 +39,26 @@ export const getRoom = async (): Promise<IRecord[]> => {
 };
 
 const Root: React.FunctionComponent = () => {
+  const { setUserInfo } = useAuth();
   const navigation: Navigation = useNavigation();
+  const location = useLocation();
+
+  async function getUserInfo() {
+    try {
+      const res = await fetch(import.meta.env.VITE_AUTHENTICATION_URL, GET_c);
+      const response = await res.json();
+      setUserInfo(response);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error(err.message);
+      }
+    }
+  }
+
+  useEffect(() => {
+    getUserInfo();
+  }, [location.pathname]);
+
   return (
     <>
       {navigation.state === "loading" ? (
