@@ -7,7 +7,7 @@
     margin: 20px 300px;
     gap: 15px;
 
-    @include sm-down{
+    @include sm-down {
         margin: 0;
     }
 
@@ -30,7 +30,7 @@
             align-items: center;
             gap: .3rem;
 
-            @include xs{
+            @include xs {
                 flex-direction: column;
             }
         }
@@ -101,11 +101,12 @@
 
     .picture-container {
         display: flex;
-       flex-flow: row wrap;;
+        flex-flow: row wrap;
+        ;
         justify-content: space-evenly;
         align-items: center;
         gap: 1rem;
-       
+
         img {
             border-radius: 20px;
             box-shadow: 0 0 4px var(--grey);
@@ -124,6 +125,13 @@
         label {
             display: flex;
             flex-direction: column;
+
+            input {
+                margin-top: 5px;
+                border: 1px solid var(--grey);
+                border-radius: 5px;
+                padding: 20px;
+            }
         }
     }
 
@@ -170,6 +178,19 @@
         justify-content: center;
         align-items: center;
         font-size: 1.2rem;
+    }
+
+    .number-of-guest {
+        label {
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--grey);
+        }
     }
 
     .reserve-btn {

@@ -3,6 +3,8 @@ export interface IRecord {
   recordid: string;
   fields: {
     name?: string;
+    neighbourhood?: string;
+    neighbourhood_cleansed?: string;
     host_neighbourhood?: string;
     city?: string;
     xl_picture_url?: string;
@@ -33,6 +35,10 @@ export interface IRecord {
 
 export interface LoaderResponse {
   records: IRecord[];
+}
+
+export interface profileLoaderResponse {
+  user: User;
 }
 
 // Category Types
@@ -67,29 +73,31 @@ export type RoomInputTypes = {
 };
 
 // Authenticated User
-export interface User { 
-    id: number | string;
-    displayName: string;
-    email: string;
-    date_of_birth: string;
-    password: string;
-    photos: object[]
-  
+export interface User {
+  id: number | string;
+  displayName?: string;
+  username?: string;
+  email: string;
+  date_of_birth: string;
+  password: string;
 }
+
 export interface AuthenticatedUser {
-  authenticated?: boolean;
-  message?: string;
+  authenticated: boolean;
+  message: string;
   user?: User;
 }
 
 // Authentication Context
 export interface AuthContextProps {
   userInfo: AuthenticatedUser | undefined;
-  setUserInfo: React.Dispatch<React.SetStateAction<AuthenticatedUser | undefined>>;
+  setUserInfo: React.Dispatch<
+    React.SetStateAction<AuthenticatedUser | undefined>
+  >;
   login: (inputs: BodyInit) => Promise<any>;
   register: (inputs: BodyInit) => Promise<any>;
   logout: () => Promise<any>;
   getUser: () => Promise<any>;
 }
 
-export interface ProfileTypes extends User{}
+export interface ProfileTypes extends User {}

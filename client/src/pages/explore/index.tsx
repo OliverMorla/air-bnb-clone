@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { fadeEffects3 } from "@/animations";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowAltCircleRight,
@@ -9,8 +10,8 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { useLoaderData } from "../room";
-import Categories from "./categories";
 import { getListing } from "@/routes/root";
+import Categories from "./categories";
 import "./style.scss";
 
 const Explore: React.FunctionComponent = (): JSX.Element => {
@@ -31,15 +32,10 @@ const Explore: React.FunctionComponent = (): JSX.Element => {
     console.log(e.currentTarget.scrollLeft);
   };
 
-  const fadeEffects = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.4 } },
-  };
-
   return (
     <motion.main
       className="explore-wrapper"
-      variants={fadeEffects}
+      variants={fadeEffects3}
       initial="hidden"
       animate="visible"
     >
@@ -92,7 +88,10 @@ const Explore: React.FunctionComponent = (): JSX.Element => {
               <FontAwesomeIcon icon={faHeart} className="heart-icon" />
               <div className="card-content">
                 <p className="location">
-                  {`${record.fields.host_neighbourhood}, ${record?.fields.city}`}
+                  {`${
+                    record.fields.neighbourhood ||
+                    record.fields.neighbourhood_cleansed
+                  }, ${record?.fields.city}`}
                   <span>
                     <FontAwesomeIcon icon={faStar} />
                     {record.fields.number_of_reviews}

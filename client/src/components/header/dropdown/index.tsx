@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { fadeEffects } from "@/animations";
 import { useAuth } from "@/context/AuthContext";
 import "./style.scss";
+import { Link } from "react-router-dom";
 
 interface Props {
   setOpenLogin: React.Dispatch<boolean>;
@@ -35,7 +36,9 @@ const Dropdown: React.FunctionComponent<Props> = ({
       animate="visible"
     >
       {userInfo ? (
-        <span> {userInfo?.user?.displayName} </span>
+        <Link to={"/auth/profile"}>
+          <span> {userInfo?.user?.displayName} </span>
+        </Link>
       ) : (
         <span onClick={() => !openLogin && setOpenRegister(true)}>
           Register

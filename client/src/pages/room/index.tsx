@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 import { motion } from "framer-motion";
 import {
   useLoaderData as useLoaderDataRouter,
   useParams,
   Link,
   LoaderFunction,
+  useNavigate,
 } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,6 +18,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { RoomInputTypes } from "@/types/types";
 import { fadeEffects } from "@/animations";
 import { getRoom } from "@/routes/root";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 import "./style.scss";
 
 // Renamed Original Hook "UseLoaderData" to "UseLoaderDataRouter" to avoid conflict with the new hook "UseLoaderData.
@@ -34,6 +37,8 @@ const Room: React.FunctionComponent = (): JSX.Element => {
   const { id } = useParams<string>();
   const records = useLoaderData<typeof getRoom>();
   const record = records?.find((record) => record?.recordid === id);
+  const navigate = useNavigate();
+  const { userInfo } = useAuth();
 
   const [input, setInput] = useState<RoomInputTypes>({
     guest: 0,
@@ -53,13 +58,33 @@ const Room: React.FunctionComponent = (): JSX.Element => {
       const checkInDate = new Date(input?.check_in_date);
       const checkOutDate = new Date(input?.check_out_date);
       const nights: number = checkOutDate.getDate() - checkInDate.getDate();
-      setInput({ ...input, nights: nights });
+      setInput({ ...input, nights: Math.abs(nights) });
     }
   }, [input?.check_in_date, input?.check_out_date]);
 
   // testing purposes
   console.log(record);
   console.log(input);
+
+  const handleReserveBtn = () => {
+    try {
+      if (userInfo !== undefined) {
+        if (input?.guest && input?.nights) {
+          navigate(
+            `/reserve/${id}?name=${input.name}&guest=${input.guest}&nights=${input.nights}&check-in-date=${input.check_in_date}&check-out-date=${input.check_out_date}&price=${input.price}`
+          );
+        } else {
+          throw new Error("Please fill out all the fields");
+        }
+      } else {
+        throw new Error("Please login to reserve a room");
+      }
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        alert(err.message);
+      }
+    }
+  };
 
   return (
     <motion.main
@@ -163,11 +188,9 @@ const Room: React.FunctionComponent = (): JSX.Element => {
                 <option value="6">6</option>
               </select>
             </div>
-            <Link
-              to={`/reserve/${id}?name=${input.name}&guest=${input.guest}&nights=${input.nights}&check-in-date=${input.check_in_date}&check-out-date=${input.check_out_date}&price=${input.price}`}
-            >
-              <div className="reserve-btn">Reserve</div>
-            </Link>
+            <div className="reserve-btn" onClick={handleReserveBtn}>
+              Reserve
+            </div>
           </div>
           <p> you wont be charged yet </p>
           <div className="price-main-wrapper">
@@ -197,7 +220,9 @@ const Room: React.FunctionComponent = (): JSX.Element => {
               <span>
                 $
                 {Number(input.nights) * Number(record?.fields.price) +
-                  Number(record?.fields.security_deposit) +
+                  (record?.fields.security_deposit
+                    ? Number(record.fields.security_deposit)
+                    : 0) +
                   (record?.fields.cleaning_fee !== undefined
                     ? Number(record?.fields.cleaning_fee)
                     : 0)}
@@ -209,7 +234,11 @@ const Room: React.FunctionComponent = (): JSX.Element => {
       <div className="house-title">
         {record?.fields.room_type} by {record?.fields.host_name}
         <span>
-          <img src={record?.fields.host_thumbnail_url} alt="host-thumbnail" />
+          {record?.fields.host_thumbnail_url ? (
+            <FontAwesomeIcon icon={faUser} />
+          ) : (
+            <img src={record?.fields.host_thumbnail_url} alt="host-thumbnail" />
+          )}
         </span>
       </div>
       <div className="room-info">

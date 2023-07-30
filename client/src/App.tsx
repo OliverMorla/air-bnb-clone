@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root, {
   getListing as listingLoader,
   getRoom as roomLoader,
+  getProfile as profileLoader,
 } from "./routes/root";
 
 import Error from "./routes/error";
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
       {
         path: "/auth/profile",
         element: <Profile />,
+        loader: profileLoader,
       },
     ],
   },

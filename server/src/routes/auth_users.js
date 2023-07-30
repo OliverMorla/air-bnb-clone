@@ -52,8 +52,8 @@ auth_users.get("/login/success", (req, res) => {
   res.redirect("/auth/login/failed");
 });
 
-auth_users.get("/profile", passport.authenticate("jwt", {session: false}), (req, res, next) => {
-  res.status(200).json({status: 200, message: "Only authenticated users can view this", user: req.user})
+auth_users.get("/profile", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+  res.status(200).json({ status: 200, message: "Only authenticated users can view this", user: req.user })
 })
 
 auth_users.get("/login/failed", (req, res) => {

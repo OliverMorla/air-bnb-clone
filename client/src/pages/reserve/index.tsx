@@ -29,7 +29,7 @@ const Reserve: React.FunctionComponent<Props> = () => {
       price,
       name,
     };
-    
+
     try {
       const res = await fetch(import.meta.env.VITE_STRIPE_API_URL, {
         method: "POST",
@@ -37,8 +37,8 @@ const Reserve: React.FunctionComponent<Props> = () => {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
-        }
-      })
+        },
+      });
       const response = await res.json();
       window.location.href = response.url;
     } catch (error) {
@@ -120,8 +120,7 @@ const Reserve: React.FunctionComponent<Props> = () => {
             </p>
           </div>
           <button onClick={handleReserve} className="confirm-reserve-btn">
-            {" "}
-            Confirm Reservation{" "}
+            Confirm Reservation
           </button>
         </section>
       </section>

@@ -17,3 +17,16 @@ export const fadeEffects2 = {
   },
 };
 
+export const fadeEffects3 = {
+  hidden: {
+    y: 40,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};

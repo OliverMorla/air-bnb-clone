@@ -6,7 +6,7 @@ header {
     width: 100%;
     border-bottom: 1px solid #ccc;
 
-    @include sm-down{
+    @include sm-down {
         padding: 25px;
         height: auto;
     }
@@ -18,8 +18,9 @@ header {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 10px;
 
-        @include sm-down{
+        @include sm-down {
             flex-direction: column;
         }
 
@@ -31,6 +32,14 @@ header {
         }
 
         .search-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            border-radius: 20px;
+            padding: 5px 15px;
+
+            box-shadow: 0 0 2px var(--quinary);
+
             .search-icon {
                 cursor: pointer;
                 background-color: var(--primary);
@@ -38,13 +47,28 @@ header {
                 border-radius: 100%;
                 color: white;
             }
+
+            span {
+                font-weight: bold;
+
+                &:nth-child(2) {
+                    padding: 10px 25px;
+                    border-left: 1px solid #ccc;
+                    border-right: 1px solid #ccc;
+                }
+
+                &:nth-child(3) {
+                    font-weight: normal;
+                    opacity: .6;
+                }
+            }
         }
 
         .right-section {
             display: flex;
             gap: 10px;
 
-            @include xs{
+            @include xs {
                 align-items: center;
                 flex-direction: column;
             }
@@ -55,6 +79,10 @@ header {
                 gap: 10px;
 
                 p {
+                    @include sm-down{
+                        display: none;
+                    }
+
                     transition: all .15s ease-in-out;
 
                     &:hover {
@@ -64,6 +92,10 @@ header {
 
                 .globe-image {
                     transition: all .15s ease-in-out;
+
+                    @include sm-down{
+                        display: none;
+                    }
 
                     &:hover {
                         border-radius: 50%;
@@ -83,7 +115,11 @@ header {
                 box-shadow: 0 0 2px var(--quinary);
                 transition: all .15s ease-in-out;
 
-                @include xs{
+                @include sm-down {
+                    margin: 0 0px;
+                }
+
+                @include xs {
                     margin: 0;
                 }
 

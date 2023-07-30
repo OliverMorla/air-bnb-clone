@@ -133,6 +133,22 @@
                     span {}
                 }
             }
+
+            .confirm-reserve-btn{
+                margin: 10px;
+                padding: 10px;
+                border-radius: 10px;
+                background-color: var(--primary);
+                color: var(--white);
+                font-weight: bold;
+                border: none;
+                cursor: pointer;
+                transition: all 0.15s ease-in-out;
+
+                &:hover {
+                    background-color: var(--primary-hover);
+                }
+            }
         }
     }
 }
