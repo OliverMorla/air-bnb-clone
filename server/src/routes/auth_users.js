@@ -4,10 +4,13 @@ const dotenv = require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const bcrypt = require("bcryptjs");
 const db = require("../database/db");
+const jwt = require("jsonwebtoken");
 
 const auth_users = express.Router();
 
-auth_users.get("/google", passport.authenticate("google", { scope: ["profile"] })
+auth_users.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile"] })
 );
 
 auth_users.get(
@@ -25,7 +28,7 @@ auth_users.get(
   passport.authenticate("facebook", {
     successRedirect: process.env.CLIENT_URL,
     failureRedirect: "/login/failed",
-  }),
+  })
 );
 
 auth_users.get("/github", passport.authenticate("github"));
@@ -35,61 +38,49 @@ auth_users.get(
   passport.authenticate("github", {
     successRedirect: process.env.CLIENT_URL,
     failureRedirect: "/login/failed",
-  }),
+  })
 );
 
 auth_users.get("/login/success", (req, res) => {
   if (req.user) {
-    res.status(200).json({
+    return res.status(200).json({
       authenticated: true,
-      message: "successfull",
+      message: "You are logged in!",
       user: req.user,
     });
   }
+  res.redirect("/auth/login/failed");
 });
 
+auth_users.get("/profile", passport.authenticate("jwt", {session: false}), (req, res, next) => {
+  res.status(200).json({status: 200, message: "Only authenticated users can view this", user: req.user})
+})
+
 auth_users.get("/login/failed", (req, res) => {
-  res.status(401).json({
+  return res.status(401).json({
     authenticated: false,
-    message: "failed",
+    message: "You are not logged in!",
   });
 });
 
-auth_users.post("/login", async (req, res, next) => {
-  const { email, password } = await req.body;
-  try {
-    const q = `
-      SELECT *
-      FROM users
-      WHERE email = ?
-      `;
-    const [rows] = await db.query(q, [email]);
-
-    if (rows.length !== 0) {
-      const user = rows[0];
-      const { password: user_password, email: user_email } = user;
-      const isPasswordSame = undefined;
-
-      if (isPasswordSame) {
-        return res.status(200).json({ status: 200, message: "You are now logged in!" })
-      }
-      return res.status(403).json({ status: 403, message: "Incorrect password!" })
-    }
-    return res.status(404).json({ status: 404, message: "Email does not exist!" })
-  } catch (err) {
-    console.log(err.message)
-  }
-});
+auth_users.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/auth/login/success",
+    failureRedirect: "/auth/login/failed",
+  })
+);
 
 auth_users.post("/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) {
-      return res.status(404).json({
-        message: "Operation failed",
-        error: err.message,
-      });
+      return res.status(500).json({ status: 500, message: err.message });
     }
-    res.redirect(process.env.CLIENT_URL);
+    return res.status(200).json({
+      status: 200,
+      message: "You are now logged out!",
+      user: req.user,
+    });
   });
 });
 
@@ -121,7 +112,6 @@ auth_users.post("/stripe/create-checkout-session", async (req, res) => {
     cancel_url: `${process.env.CLIENT_URL}/reserve-failed`,
   });
 
-  // res.redirect(303, session.url);
   res.send({ url: session.url });
 });
 

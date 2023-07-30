@@ -47,16 +47,21 @@ const Root: React.FunctionComponent = () => {
     try {
       const res = await fetch(import.meta.env.VITE_AUTHENTICATION_URL, GET_c);
       const response = await res.json();
-      setUserInfo(response);
+      if(response.authenticated){
+        setUserInfo(response);
+      } else {
+        throw new Error("You are not logged in!")
+      }
     } catch (err: unknown) {
       if (err instanceof Error) {
-        console.error(err.message);
+        console.log(err.message)
       }
     }
   }
 
   useEffect(() => {
     getUserInfo();
+    return undefined;
   }, [location.pathname]);
 
   return (

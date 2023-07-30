@@ -70,6 +70,9 @@ export type RoomInputTypes = {
 export interface User { 
     id: number | string;
     displayName: string;
+    email: string;
+    date_of_birth: string;
+    password: string;
     photos: object[]
   
 }
@@ -84,6 +87,9 @@ export interface AuthContextProps {
   userInfo: AuthenticatedUser | undefined;
   setUserInfo: React.Dispatch<React.SetStateAction<AuthenticatedUser | undefined>>;
   login: (inputs: BodyInit) => Promise<any>;
-  logout: () => Promise<any>;
   register: (inputs: BodyInit) => Promise<any>;
+  logout: () => Promise<any>;
+  getUser: () => Promise<any>;
 }
+
+export interface ProfileTypes extends User{}

@@ -1,6 +1,6 @@
 import { useContext, createContext, useState } from "react";
 import { AuthenticatedUser, AuthContextProps } from "@/types/types";
-import { GET, headers } from "@/config/fetch.config";
+import { POST_c, headers } from "@/config/fetch.config";
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
@@ -21,10 +21,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const res = await fetch(import.meta.env.VITE_AUTH_LOGIN_URL, {
         method: "POST",
+        credentials: "include",
         body: inputs,
         ...headers,
       });
       const data = await res.json();
+      localStorage.setItem("user", data?.user.token);
       setUserInfo(data);
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -35,8 +37,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   async function logout(): Promise<any> {
     try {
-      const res = await fetch(import.meta.env.VITE_AUTH_LOGOUT_URL, GET);
+      const res = await fetch(import.meta.env.VITE_AUTH_LOGOUT_URL, POST_c);
       const response = await res.json();
+      localStorage.removeItem("user");
+      setUserInfo(undefined);
       return response;
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -61,9 +65,31 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+  async function getUser(): Promise<any> {
+    const token = localStorage.getItem("user");
+    try {
+      if (token) {
+        const res = await fetch(import.meta.env.VITE_AUTH_PROFILE_URL, {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const response = await res.json();
+        return response;
+      }
+    } catch (err: unknown) {
+      if (err instanceof Error) return err.message;
+    }
+  }
+
   return (
     <AuthContext.Provider
-      value={{ userInfo, setUserInfo, login, logout, register }}
+      value={{ userInfo, setUserInfo, login, logout, register, getUser }}
     >
       {children}
     </AuthContext.Provider>

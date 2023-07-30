@@ -23,6 +23,7 @@ const facebookConfig = {
 const jwtConfig = {
     secretOrKey: process.env.JWT_SECRET_KEY,
     issuer: process.env.JWT_ISSUER,
+    audience: process.env.JWT_AUDIENCE,
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 }
 

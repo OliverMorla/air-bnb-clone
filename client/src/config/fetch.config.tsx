@@ -6,6 +6,15 @@ export const POST = {
   },
 };
 
+export const POST_c: RequestInit = {
+  method: "POST",
+  credentials: "include",
+  headers: {
+    "Content-Type": "application/json",
+    "Acess-Control-Allow-Origin": "*",
+  },
+};
+
 export const GET = {
   method: "GET",
   headers: {
@@ -47,3 +56,4 @@ export const headers = {
     "Acess-Control-Allow-Origin": "*",
   },
 };
+

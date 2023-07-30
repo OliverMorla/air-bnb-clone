@@ -12,6 +12,7 @@ import Room from "./pages/room";
 import Reserve from "./pages/reserve";
 import Failed from "./pages/failed";
 import Success from "./pages/sucess";
+import Profile from "./pages/profile";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "/reserve-failed",
         element: <Failed />,
+      },
+      {
+        path: "/auth/profile",
+        element: <Profile />,
       },
     ],
   },
