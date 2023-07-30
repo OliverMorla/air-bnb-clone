@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import {
   useLoaderData as useLoaderDataRouter,
   useParams,
-  Link,
   LoaderFunction,
   useNavigate,
 } from "react-router-dom";
