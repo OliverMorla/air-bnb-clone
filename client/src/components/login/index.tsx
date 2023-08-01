@@ -3,7 +3,7 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fadeEffects2 } from "@/animations";
-import { LoginInputTypes } from "@/types/types";
+import { LoginInputTypes, User } from "@/types/types";
 import { useAuth } from "@/context/AuthContext";
 import "./style.scss";
 import {
@@ -44,10 +44,11 @@ const Login: React.FunctionComponent<Props> = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res: { status: number; message: string } = await login(
-        JSON.stringify(inputs)
-      );
-      console.log(res);
+      const res: { authenticated: boolean; message: string; user: User } =
+        await login(JSON.stringify(inputs));
+      if (res.authenticated) {
+        setOpenLogin(false);
+      }
     } catch (err: unknown) {
       if (err instanceof Error) console.log(err.message);
     }

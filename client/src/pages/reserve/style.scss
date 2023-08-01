@@ -92,8 +92,11 @@
 
             .room-details-w {
                 display: flex;
+                align-items: center;
 
-                .room-left-content {}
+                .room-left-content {
+                    display: flex;
+                }
 
                 .room-right-content {
                     display: flex;
@@ -134,7 +137,7 @@
                 }
             }
 
-            .confirm-reserve-btn{
+            .confirm-reserve-btn {
                 margin: 10px;
                 padding: 10px;
                 border-radius: 10px;

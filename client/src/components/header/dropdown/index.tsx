@@ -27,7 +27,7 @@ const Dropdown: React.FunctionComponent<Props> = ({
       if (err instanceof Error) console.log(err.message);
     }
   };
-  console.log(userInfo !== undefined && userInfo);
+  // console.log(userInfo !== undefined && userInfo);
   return (
     <motion.section
       className="dropdown-wrapper"

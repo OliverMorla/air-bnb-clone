@@ -28,6 +28,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const data = await res.json();
       localStorage.setItem("user", data?.user.token);
       setUserInfo(data);
+      return data;
     } catch (err: unknown) {
       if (err instanceof Error) {
         return err.message;
@@ -87,9 +88,31 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+  async function getOrders(inputs: BodyInit): Promise<any> {
+    try {
+      const res = await fetch(import.meta.env.VITE_AUTH_ORDERS_URL, {
+        method: "POST",
+        body: inputs,
+        ...headers,
+      });
+      const response = await res.json();
+      return response;
+    } catch (err: unknown) {
+      if (err instanceof Error) return err.message;
+    }
+  }
+
   return (
     <AuthContext.Provider
-      value={{ userInfo, setUserInfo, login, logout, register, getUser }}
+      value={{
+        userInfo,
+        setUserInfo,
+        login,
+        logout,
+        register,
+        getUser,
+        getOrders,
+      }}
     >
       {children}
     </AuthContext.Provider>

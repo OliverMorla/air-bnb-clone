@@ -1,4 +1,4 @@
-import "./style.scss"
+import "./style.scss";
 
 const Failed: React.FunctionComponent = (): JSX.Element => {
   return (

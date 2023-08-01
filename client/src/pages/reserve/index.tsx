@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { fadeEffects } from "@/animations";
 import { motion } from "framer-motion";
 import "./style.scss";
@@ -9,15 +10,19 @@ const Reserve: React.FunctionComponent<Props> = () => {
   const { id } = useParams();
 
   const queryParams = new URLSearchParams(window.location.search);
-
+  const user_id: string | null = queryParams.get("user-id");
   const number_of_guest: string | null = queryParams.get("guest");
   const number_of_nights: string | null = queryParams.get("nights");
   const checkInDate: string | null = queryParams.get("check-in-date");
   const checkOutDate: string | null = queryParams.get("check-out-date");
   const price: string | null = queryParams.get("price");
   const name: string | null = queryParams.get("name");
+  const pictureUrl: string | null = queryParams.get("pictureUrl");
 
   // testing purposes
+  useEffect(() => {
+    
+  }, [id])
   console.log("id: " + id);
 
   const handleReserve = async () => {
@@ -28,6 +33,7 @@ const Reserve: React.FunctionComponent<Props> = () => {
       checkOutDate,
       price,
       name,
+      user_id
     };
 
     try {
@@ -99,11 +105,14 @@ const Reserve: React.FunctionComponent<Props> = () => {
         <section className="right-content">
           <div className="room-details-w">
             <div className="room-left-content">
-              <img src="" alt="room-image" />
+              <img src={`${pictureUrl}`} alt="room-image" width={"150px"} style={{
+                borderRadius: "10px",
+                margin: "20px"
+              }}/>
             </div>
             <div className="room-right-content">
               <span className="room-catergory">Room in home</span>
-              <span className="room-title">Cozy room in a vegan oasis</span>
+              <span className="room-title">{name}</span>
               <span className="room-reviews"></span>
             </div>
           </div>

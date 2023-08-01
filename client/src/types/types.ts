@@ -33,6 +33,7 @@ export interface IRecord {
   };
 }
 
+// Loader Responses Interfaces
 export interface LoaderResponse {
   records: IRecord[];
 }
@@ -62,17 +63,18 @@ export type LoginInputTypes = {
   password: string;
 };
 
-// Room Pages Types
+// Room Input Types
 export type RoomInputTypes = {
   guest: number | string;
   nights: number | string;
   check_in_date: number | string;
   check_out_date: number | string;
   price: number | string | undefined;
+  user_id?: number | string | 1;
   name: string | undefined;
 };
 
-// Authenticated User
+// Authenticated User Interface
 export interface User {
   id: number | string;
   displayName?: string;
@@ -88,16 +90,26 @@ export interface AuthenticatedUser {
   user?: User;
 }
 
-// Authentication Context
+// Authentication Context Interface
 export interface AuthContextProps {
   userInfo: AuthenticatedUser | undefined;
-  setUserInfo: React.Dispatch<
-    React.SetStateAction<AuthenticatedUser | undefined>
-  >;
+  setUserInfo: React.Dispatch<React.SetStateAction<AuthenticatedUser | undefined>>;
   login: (inputs: BodyInit) => Promise<any>;
   register: (inputs: BodyInit) => Promise<any>;
   logout: () => Promise<any>;
   getUser: () => Promise<any>;
+  getOrders: (inputs: BodyInit) => Promise<any>;
+}
+
+// Order Interface for Orders Endpoint
+export interface Order {
+    order_id: number | undefined;
+    room_name: string | undefined;
+    check_in_date: string | undefined;
+    check_out_date: string | undefined;
+    number_of_guest: number | undefined;
+    number_of_nights: number | undefined;
+    total_price: number | undefined
 }
 
 export interface ProfileTypes extends User {}

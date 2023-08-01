@@ -32,12 +32,15 @@ const Header: React.FunctionComponent<Props> = () => {
         <figure>
           <Link to={"/"}>
             <picture>
-            <source srcSet="/assets/logos/logo.png" media="(max-width: 1100px)"/>
-            <img
-              src="/assets/logos/airbnb-logo.png"
-              alt="airbnb-logo"
-              className="airbnb-logo"
-            />
+              <source
+                srcSet="/assets/logos/logo.png"
+                media="(max-width: 1100px)"
+              />
+              <img
+                src="/assets/logos/airbnb-logo.png"
+                alt="airbnb-logo"
+                className="airbnb-logo"
+              />
             </picture>
           </Link>
         </figure>

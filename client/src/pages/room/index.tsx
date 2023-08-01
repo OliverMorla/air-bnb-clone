@@ -46,6 +46,7 @@ const Room: React.FunctionComponent = (): JSX.Element => {
     check_out_date: "",
     price: record?.fields.price,
     name: record?.fields.name,
+    user_id: userInfo?.user?.id,
   });
 
   const features: string[] | undefined = record?.fields.features?.split(",");
@@ -70,7 +71,15 @@ const Room: React.FunctionComponent = (): JSX.Element => {
       if (userInfo !== undefined) {
         if (input?.guest && input?.nights) {
           navigate(
-            `/reserve/${id}?name=${input.name}&guest=${input.guest}&nights=${input.nights}&check-in-date=${input.check_in_date}&check-out-date=${input.check_out_date}&price=${input.price}`
+            `/reserve/${id}?user-id=${input.user_id}&name=${input.name}&guest=${
+              input.guest
+            }&nights=${input.nights}&check-in-date=${
+              input.check_in_date
+            }&check-out-date=${input.check_out_date}&price=${
+              input.price
+            }&pictureUrl=${
+              record?.fields.xl_picture_url || record?.fields.medium_url
+            }`
           );
         } else {
           throw new Error("Please fill out all the fields");

@@ -18,35 +18,31 @@ import {
 import { useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 
-export const getListing = async (): Promise<IRecord[]> => {
-  try {
-    const res = await fetch(
-      "https://public.opendatasoft.com/api/records/1.0/search/?dataset=airbnb-listings&q=&rows=5&start=2&facet=host_response_time&facet=host_response_rate&facet=host_verifications&facet=city&facet=country&facet=property_type&facet=room_type&facet=bed_type&facet=amenities&facet=availability_365&facet=cancellation_policy&facet=features&refine.city=London&refine.property_type=Condominium"
-    );
-    const { records } = (await res.json()) as LoaderResponse;
-    console.log(records)
-    return records;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
-
-export const getRoom = async (): Promise<IRecord[]> => {
+export const getListing = async (): Promise<IRecord[] | undefined> => {
   try {
     const res = await fetch(
       "https://public.opendatasoft.com/api/records/1.0/search/?dataset=airbnb-listings&q=&rows=5&start=2&facet=host_response_time&facet=host_response_rate&facet=host_verifications&facet=city&facet=country&facet=property_type&facet=room_type&facet=bed_type&facet=amenities&facet=availability_365&facet=cancellation_policy&facet=features&refine.city=London&refine.property_type=Condominium"
     );
     const { records } = (await res.json()) as LoaderResponse;
     return records;
-  } catch (error) {
-    console.error(error);
-    throw error;
+  } catch (err: unknown) {
+    if (err instanceof Error) console.log(err.message);
   }
 };
 
-//@ts-ignore
-export const getProfile = async (): Promise<User> => {
+export const getRoom = async (): Promise<IRecord[] | undefined> => {
+  try {
+    const res = await fetch(
+      "https://public.opendatasoft.com/api/records/1.0/search/?dataset=airbnb-listings&q=&rows=5&start=2&facet=host_response_time&facet=host_response_rate&facet=host_verifications&facet=city&facet=country&facet=property_type&facet=room_type&facet=bed_type&facet=amenities&facet=availability_365&facet=cancellation_policy&facet=features&refine.city=London&refine.property_type=Condominium"
+    );
+    const { records } = (await res.json()) as LoaderResponse;
+    return records;
+  } catch (err: unknown) {
+    if (err instanceof Error) console.log(err.message);
+  }
+};
+
+export const getProfile = async (): Promise<User | undefined> => {
   const token = localStorage.getItem("user");
   try {
     if (token) {
@@ -68,7 +64,7 @@ export const getProfile = async (): Promise<User> => {
   }
 };
 
-const Root: React.FunctionComponent = () => {
+const Root: React.FunctionComponent = (): JSX.Element => {
   const { setUserInfo } = useAuth();
   const navigation: Navigation = useNavigation();
   const location: Location = useLocation();
@@ -91,7 +87,7 @@ const Root: React.FunctionComponent = () => {
 
   useEffect(() => {
     getUserInfo();
-    return undefined;
+    return () => undefined;
   }, [location.pathname]);
 
   return (

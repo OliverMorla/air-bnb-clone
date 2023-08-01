@@ -78,7 +78,7 @@ const Explore: React.FunctionComponent = (): JSX.Element => {
         </div>
       </div>
       <div className="listing-wrapper">
-        {records.map((record) => (
+        {records?.map((record) => (
           <Link to={`/explore/${record?.recordid}`} key={record?.recordid}>
             <div className="card">
               <img

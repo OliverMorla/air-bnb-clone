@@ -1,6 +1,6 @@
 import { Category } from "@/types/types";
 
-const Categories: React.FunctionComponent = () => {
+const Categories: React.FunctionComponent = (): JSX.Element => {
   const categories: Array<Category> = [
     { id: 1, name: "House", source: "./assets/categories/House.svg" },
     { id: 2, name: "Farm", source: "./assets/categories/Farm.svg" },
@@ -24,16 +24,8 @@ const Categories: React.FunctionComponent = () => {
     { id: 20, name: "TinyHome", source: "./assets/categories/TinyHome.svg" },
     { id: 21, name: "Ryokan", source: "./assets/categories/Ryokan.svg" },
     { id: 22, name: "Dammuso", source: "./assets/categories/Dammuso.svg" },
-    {
-      id: 23,
-      name: "CycladicHome",
-      source: "./assets/categories/CycladicHome.svg",
-    },
-    {
-      id: 24,
-      name: "CasaParticular",
-      source: "./assets/categories/CasaParticular.svg",
-    },
+    { id: 23, name: "CycladicHome", source: "./assets/categories/CycladicHome.svg", },
+    { id: 24, name: "CasaParticular", source: "./assets/categories/CasaParticular.svg", },
     { id: 25, name: "Piano", source: "./assets/categories/Piano.svg" },
     { id: 26, name: "Pool", source: "./assets/categories/Pool.svg" },
     { id: 27, name: "Patio", source: "./assets/categories/Patio.svg" },
