@@ -14,6 +14,7 @@ import Reserve from "./pages/reserve";
 import Failed from "./pages/failed";
 import Success from "./pages/sucess";
 import Profile from "./pages/profile";
+import Protected from "./routes/protected";
 
 const router = createBrowserRouter([
   {
@@ -41,15 +42,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/reserve/:id",
-        element: <Reserve />,
+        element: (
+          <Protected>
+            <Reserve />
+          </Protected>
+        ),
       },
       {
         path: "/reserve-success",
-        element: <Success />,
+        element: (
+          <Protected>
+            <Success />
+          </Protected>
+        ),
       },
       {
         path: "/reserve-failed",
-        element: <Failed />,
+        element: (
+          <Protected>
+            <Failed />
+          </Protected>
+        ),
       },
       {
         path: "/auth/profile",

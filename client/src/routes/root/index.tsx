@@ -12,6 +12,7 @@ import {
   Navigation,
   Outlet,
   useNavigation,
+  redirect,
   useLocation,
   Location,
 } from "react-router-dom";
@@ -59,8 +60,11 @@ export const getProfile = async (): Promise<User | undefined> => {
       const { user } = (await res.json()) as profileLoaderResponse;
       return user;
     }
+    //@ts-ignore
+    return redirect('/')
   } catch (err: unknown) {
-    if (err instanceof Error) console.log(err.message);
+    if (err instanceof Error) {
+      console.log(err.message)}; 
   }
 };
 

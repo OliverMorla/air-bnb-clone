@@ -62,7 +62,7 @@ const Profile = (): JSX.Element => {
         <h1>Orders</h1>
         <div className="orders-content">
           {orders?.map((order) => (
-            <span>
+            <span key={order.order_id}>
               <div className="order-info">
                 <h4>Order ID</h4>
                 <p>{order.order_id}</p>

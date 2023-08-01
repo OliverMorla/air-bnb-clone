@@ -70,7 +70,7 @@ export type RoomInputTypes = {
   check_in_date: number | string;
   check_out_date: number | string;
   price: number | string | undefined;
-  user_id?: number | string | 1;
+  user_id?: string | number;
   name: string | undefined;
 };
 

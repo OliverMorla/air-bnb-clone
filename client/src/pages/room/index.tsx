@@ -26,6 +26,7 @@ export function useLoaderData<T extends LoaderFunction>() {
   return useLoaderDataRouter() as LoaderData<T>;
   // The result of useLoaderDataRouter is a union of all the possible return types of the loader functions.
 }
+
 export type LoaderData<TLoaderFn extends LoaderFunction> = Awaited<
   ReturnType<TLoaderFn>
 > extends Response | infer D
@@ -34,10 +35,10 @@ export type LoaderData<TLoaderFn extends LoaderFunction> = Awaited<
 
 const Room: React.FunctionComponent = (): JSX.Element => {
   const { id } = useParams<string>();
+  const { userInfo } = useAuth();
   const records = useLoaderData<typeof getRoom>();
   const record = records?.find((record) => record?.recordid === id);
   const navigate = useNavigate();
-  const { userInfo } = useAuth();
 
   const [input, setInput] = useState<RoomInputTypes>({
     guest: 0,
@@ -46,7 +47,7 @@ const Room: React.FunctionComponent = (): JSX.Element => {
     check_out_date: "",
     price: record?.fields.price,
     name: record?.fields.name,
-    user_id: userInfo?.user?.id,
+    user_id: 1,
   });
 
   const features: string[] | undefined = record?.fields.features?.split(",");
@@ -55,12 +56,19 @@ const Room: React.FunctionComponent = (): JSX.Element => {
   useEffect(() => {
     //date format: yyyy-mm-dd
     if (input?.check_in_date && input?.check_out_date) {
-      const checkInDate = new Date(input?.check_in_date);
+      const checkInDate = new Date(input?.check_in_date); 
       const checkOutDate = new Date(input?.check_out_date);
       const nights: number = checkOutDate.getDate() - checkInDate.getDate();
       setInput({ ...input, nights: Math.abs(nights) });
     }
   }, [input?.check_in_date, input?.check_out_date]);
+
+  useEffect(() => {
+    if (input.user_id === undefined)
+      setInput({
+        ...input, user_id: userInfo?.user !== null ? userInfo?.user?.id : 1,
+      });
+  }, []);
 
   // testing purposes
   console.log(record);
