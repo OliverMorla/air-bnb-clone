@@ -47,7 +47,7 @@ const Room: React.FunctionComponent = (): JSX.Element => {
     check_out_date: "",
     price: record?.fields.price,
     name: record?.fields.name,
-    user_id: 1,
+    user_id: "",
   });
 
   const features: string[] | undefined = record?.fields.features?.split(",");
