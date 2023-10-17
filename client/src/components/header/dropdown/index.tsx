@@ -18,6 +18,7 @@ const Dropdown: React.FunctionComponent<Props> = ({
   openRegister,
 }) => {
   const { logout, userInfo } = useAuth();
+  console.log(userInfo)
   const handleLogout = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {

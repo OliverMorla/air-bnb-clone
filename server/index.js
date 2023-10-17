@@ -20,10 +20,10 @@ app.use(
     secret: process.env.SESSION_COOKIE_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: {
-      httpOnly: true,
-      sameSite: true,
-    },
+    // cookie: {
+    //   httpOnly: true,
+    //   sameSite: true,
+    // },
   })
 );
 
@@ -32,10 +32,7 @@ app.use(passport.session());
 
 app.use(
   cors({
-    origin: [
-      process.env.CLIENT_URL, 
-      process.env.CLIENT_URL2,
-    ],
+    origin: [process.env.CLIENT_URL, process.env.CLIENT_URL2],
     methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
     credentials: true,
   })
