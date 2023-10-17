@@ -16,10 +16,11 @@ app.use(express.json());
 
 app.use(
   session({
-    name: process.env.SESSION_COOKIE_NAME ?? "",
+    name: process.env.SESSION_COOKIE_NAME,
     secret: process.env.SESSION_COOKIE_SECRET,
     resave: false,
     saveUninitialized: true,
+    name: "accounts.airbnb.com",
     proxy: true,
     cookie: {
       secure: true, // enable this on production
