@@ -73,6 +73,15 @@ const Login: React.FunctionComponent<Props> = ({
         <p> Log in or Sign Up</p>
       </header>
       <h2> Welcome to Airbnb</h2>
+      <div style={{
+        display: "flex",
+        flexDirection: "column",
+        fontSize: "1rem"
+      }}>
+        <p>Test account:</p>
+        <p>Email: guest@airbnb.com</p>
+        <p>Password: password</p>
+      </div>
       <form action="" onSubmit={handleSubmit}>
         <input
           type="email"

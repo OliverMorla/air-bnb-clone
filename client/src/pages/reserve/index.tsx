@@ -20,10 +20,7 @@ const Reserve: React.FunctionComponent<Props> = () => {
   const pictureUrl: string | null = queryParams.get("pictureUrl");
 
   // testing purposes
-  useEffect(() => {
-    
-  }, [id])
-  console.log("id: " + id);
+  useEffect(() => {}, [id]);
 
   const handleReserve = async () => {
     const data = {
@@ -33,7 +30,7 @@ const Reserve: React.FunctionComponent<Props> = () => {
       checkOutDate,
       price,
       name,
-      user_id
+      user_id,
     };
 
     try {
@@ -105,10 +102,15 @@ const Reserve: React.FunctionComponent<Props> = () => {
         <section className="right-content">
           <div className="room-details-w">
             <div className="room-left-content">
-              <img src={`${pictureUrl}`} alt="room-image" width={"150px"} style={{
-                borderRadius: "10px",
-                margin: "20px"
-              }}/>
+              <img
+                src={`${pictureUrl}`}
+                alt="room-image"
+                width={"150px"}
+                style={{
+                  borderRadius: "10px",
+                  margin: "20px",
+                }}
+              />
             </div>
             <div className="room-right-content">
               <span className="room-catergory">Room in home</span>

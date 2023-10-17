@@ -16,16 +16,15 @@ app.use(express.json());
 
 app.use(
   session({
-    name: process.env.SESSION_COOKIE_NAME,
+    name: process.env.SESSION_COOKIE_NAME ?? "",
     secret: process.env.SESSION_COOKIE_SECRET,
     resave: false,
     saveUninitialized: true,
-    proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
-    name: "MyCoolWebAppCookieName", // This needs to be unique per-host.
+    proxy: true,
     cookie: {
-      secure: true, // required for cookies to work on HTTPS
+      secure: true, // enable this on production
       httpOnly: false,
-      sameSite: "none",
+      sameSite: "none", // enable this on production
     },
   })
 );
@@ -36,7 +35,7 @@ app.use(passport.session());
 app.use(
   cors({
     origin: [process.env.CLIENT_URL, process.env.CLIENT_URL2],
-    methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
+    methods: ["GET, HEAD, PUT, PATCH, POST, DELETE"],
     credentials: true,
   })
 );
